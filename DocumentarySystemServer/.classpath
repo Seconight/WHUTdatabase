@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/Documents/ec_code/DocumentarySystemServer/sqljdbc_7.0/chs/mssql-jdbc-7.0.0.jre8.jar"/>
-	<classpathentry kind="lib" path="D:/Documents/ec_code/DocumentarySystemServer/sqljdbc_7.0/chs/mssql-jdbc-7.0.0.jre10.jar"/>
+	<classpathentry kind="lib" path="E:/360Downloads/数据库/实验/数据库实验/DocumentarySystemServer/sqljdbc_7.0/chs/mssql-jdbc-7.0.0.jre8.jar"/>
+	<classpathentry kind="lib" path="E:/360Downloads/数据库/实验/数据库实验/DocumentarySystemServer/sqljdbc_7.0/chs/mssql-jdbc-7.0.0.jre10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
