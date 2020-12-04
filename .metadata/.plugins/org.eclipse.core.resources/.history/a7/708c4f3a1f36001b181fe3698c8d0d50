@@ -22,8 +22,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 
 public class Login extends JFrame implements ActionListener {
 
@@ -116,8 +116,9 @@ public class Login extends JFrame implements ActionListener {
 
 	}
 
+	
 	/**
-	 * @author 15758 
+	 * @author 15758
 	 * 登陆事件
 	 */
 	@Override
@@ -125,15 +126,15 @@ public class Login extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		boolean flag = false;// 用来标志用户是否正确
 		try {
-			if ((JButton) e.getSource() == button_login) {
+			if ((JButton)e.getSource()== button_login) {
 
 				for (;;) {// 遍历所有用户信息，以此来判断输入的信息是否正确
 
 					if (true) {
 						if (flag) {// 如果时学生
-
+							
 						} else {// 如果时宿管
-
+							
 						}
 						flag = true;
 						break;// 如果信息正确就退出遍历，提高效率
@@ -148,8 +149,6 @@ public class Login extends JFrame implements ActionListener {
 			}
 		} catch (Exception e2) {
 			// TODO: handle exception
-			JOptionPane.showMessageDialog(null, "发生异常", "警告",JOptionPane.WARNING_MESSAGE);
-			new Login();
 		}
 	}
 

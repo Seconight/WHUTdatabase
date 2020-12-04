@@ -1,0 +1,208 @@
+package dsc.GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
+
+public class SystemGui extends JFrame implements ChangeListener,ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	
+	JFrame frame = new JFrame();
+	JTabbedPane paneParent = new JTabbedPane();
+	JPanel paneWelcome = new JPanel();
+	JPanel paneStudent = new JPanel();
+	JPanel paneDormitory = new JPanel();
+	JPanel paneButton = new JPanel();
+	JLabel labelWelcome = new JLabel("学生宿舍管理系统");
+	JLabel labelWelcome2 = new JLabel("您的身份为系统管理员");
+	DefaultTableModel tableModel;
+	JTable table;
+	JScrollPane s;
+	JButton buttonSave = new JButton("保存");
+	JButton buttonDelete = new JButton("删除");
+	JButton buttonIncrease = new JButton("增加");
+	Vector<String> dataTitle = new Vector<String>();Vector<String> TitleDormitor = new Vector<String>();
+	Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+
+    public SystemGui(){
+		frame.setSize(700,600);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);	 
+		frame.setResizable(false);
+		frame.setLayout(null);
+		//选项卡
+		frame.add(paneParent);
+		paneParent.setBounds(0, 0, 500, 600);
+		frame.add(paneButton);
+		paneButton.setBounds(510, 0, 200, 600);
+		paneParent.addTab("学生管理系统",null,paneWelcome,null);
+		paneParent.addTab("学生信息",null,paneStudent,"学生信息");
+		paneParent.addTab("宿舍信息",null,paneDormitory,"宿舍信息");
+		//欢迎页
+		paneWelcome.setLayout(null);
+		paneWelcome.add(labelWelcome);
+		labelWelcome.setBounds(50,150,500,100);
+		labelWelcome.setFont(new java.awt.Font("Dialog", 1, 40));
+		labelWelcome.setForeground(Color.blue);
+		paneWelcome.add(labelWelcome2);
+		labelWelcome2.setBounds(60, 300, 500, 40);
+		labelWelcome2.setFont(new java.awt.Font("Dialog", 1, 30));
+		labelWelcome2.setForeground(Color.BLUE);
+		//表格
+		dataTitle.add("学号");dataTitle.add("姓名");dataTitle.add("性别");dataTitle.add("专业");dataTitle.add("宿舍号");dataTitle.add("入住时间");
+		TitleDormitor.add("宿舍号");TitleDormitor.add("宿舍电话");
+		tableModel = new DefaultTableModel(data,dataTitle);
+		table = new JTable(tableModel);
+		s = new JScrollPane(table);
+		paneStudent.setLayout(null);
+		paneStudent.add(s);
+		s.setBounds(5, 10, 500, 510);	
+		//按钮
+		paneButton.setLayout(null);
+		paneButton.add(buttonSave);
+		buttonSave.setBounds(25, 30, 100, 30);
+		paneParent.addChangeListener(this);
+		paneButton.add(buttonDelete);
+		buttonDelete.setBounds(25, 80, 100, 30);
+		paneButton.add(buttonIncrease);
+		buttonIncrease.setBounds(25, 130, 100, 30);
+		buttonSave.addActionListener(this);
+		buttonDelete.addActionListener(this);
+		buttonIncrease.addActionListener(this);
+		buttonDelete.setVisible(false);
+		buttonSave.setVisible(false);
+		buttonIncrease.setVisible(false);
+	}
+//-------------------------------------选项卡事件------------------------------
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		// TODO Auto-generated method stub
+		if(((JTabbedPane)e.getSource()).getSelectedIndex()==0)
+		{
+			buttonDelete.setVisible(false);
+			buttonSave.setVisible(false);
+			buttonIncrease.setVisible(false);
+		}
+		if(((JTabbedPane)e.getSource()).getSelectedIndex()==1)
+		{
+			buttonDelete.setVisible(true);
+			buttonSave.setVisible(true);
+			buttonIncrease.setVisible(true);
+			paneStudent.add(s);
+			data = sq.query("学生信息表", 6);
+			//System.out.println(data);
+		    tableModel.setDataVector(data, dataTitle);		
+		}
+		if(((JTabbedPane)e.getSource()).getSelectedIndex()==2)
+		{
+			buttonDelete.setVisible(true);
+			buttonSave.setVisible(true);
+			buttonIncrease.setVisible(true);
+			paneDormitory.setLayout(null);
+			paneDormitory.add(s);
+			s.setBounds(5, 10, 500, 510);
+			data = sq.query("宿舍信息表", 2);
+			//System.out.println(data);
+		    tableModel.setDataVector(data,TitleDormitor);			
+		}
+		
+	}
+//--------------------------------------按钮事件--------------------------------
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		//------------------------------- 删除-----------------------------
+		String tableName = null;
+		String key1 = null;
+		if((JButton)e.getSource()==buttonDelete)
+		{   if(paneParent.getSelectedIndex()==1)
+			{
+				tableName = "学生信息表";
+				key1 = "sno";
+			}
+			if(paneParent.getSelectedIndex()==2)
+			{
+				tableName = "宿舍信息表";
+				key1 = "dno";
+			}
+			int row = table.getSelectedRow();			
+			if(row!=-1)
+			{
+				String key2 = (String) tableModel.getValueAt(row, 0);
+				int result = JOptionPane.showConfirmDialog(null, "确定要删除吗？","请确认",JOptionPane.YES_NO_OPTION);
+				if(result==JOptionPane.OK_OPTION)
+				{
+					String sql = "delete from "+tableName+" where "+key1+"="+key2;
+					int num = sq.delete(sql);
+					if(num>0)
+					{
+						tableModel.removeRow(row);
+					}
+				}
+			}
+			else 
+			{	
+				JOptionPane.showMessageDialog(null, "请选择要删除的行！","提示：",JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		//------------------------------保存------------------------
+		if((JButton)e.getSource()==buttonSave)
+		{
+			int result = JOptionPane.showConfirmDialog(null, "请确认数值已经更改，否则保存无效","请确认",JOptionPane.YES_NO_OPTION);
+			if(result==JOptionPane.OK_OPTION)
+			{
+				int row = table.getRowCount();
+				int column = table.getColumnCount();			
+				String[][]valueRow= new String[row][column];
+				String[] sqlvalue  = new String[row];
+				for(int i = 0; i < row; i++)
+				{
+					for(int j = 0; j < column; j++)
+					{
+						valueRow[i][j] = table.getValueAt(i, j).toString();
+					}
+				}
+				if(paneParent.getSelectedIndex()==1)
+				{	
+					for(int i =0;i<row;i++)
+					{
+						String sql = "insert into 学生信息表"+" values ("+valueRow[i][0].toString()+","+valueRow[i][1].toString()+","+valueRow[i][2].toString()+","+valueRow[i][3].toString()+","+valueRow[i][4].toString()+","+valueRow[i][5].toString()+")";				
+						sqlvalue[i]=sql.toString();									
+					}
+					data = sq.Save(sqlvalue,"学生信息表",row, column);
+		            tableModel.setDataVector(data,dataTitle);			
+				}
+				if(paneParent.getSelectedIndex()==2)
+				{
+					for(int i =0;i<row;i++)
+					{
+						String sql = "insert into 宿舍信息表"+" values ("+valueRow[i][0].toString()+","+valueRow[i][1].toString()+")";				
+						sqlvalue[i]=sql.toString();									
+					}
+					data = sq.Save(sqlvalue,"宿舍信息表",row, column);
+		            tableModel.setDataVector(data,TitleDormitor);			
+				}				
+			}					        
+		}
+		//------------------------------增加---------------------------
+		if((JButton)e.getSource()==buttonIncrease)
+		{
+			tableModel.addRow(new Vector<>());
+		}
+	}
+
+}
