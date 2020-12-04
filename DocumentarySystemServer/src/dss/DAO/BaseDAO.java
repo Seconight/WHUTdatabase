@@ -55,6 +55,8 @@ public class BaseDAO {
 				int credit = resultSet.getInt(3);
 				System.out.println(cno+" "+" money:"+credit);
 			}
+			stmt.close();
+			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,9 +65,9 @@ public class BaseDAO {
     //main function
     
     public static void main(String[] args) {
-		//connectToDatabase();
-		//testDataOut();
-		//closeDatabase();
+		connectToDatabase();
+		testDataOut();
+		closeDatabase();
 	}
 	
 }
