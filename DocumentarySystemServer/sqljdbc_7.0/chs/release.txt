@@ -1,0 +1,214 @@
+版本信息
+Microsoft JDBC Driver 7.0 for SQL Server
+2018 年 7 月
+
+------------
+简介
+------------
+此文件包含最新或其他重要信息，是 Microsoft JDBC  
+Driver 7.0 for SQL Server 文档。在安装 JDBC 驱动程序之前，应 
+通读此文件。
+
+你的反馈对我们非常重要，我们将力求即时对你的反馈 
+做出回复。有关使用 JDBC 驱动程序博客和在线论坛提供反馈的信息，
+请参阅 Microsoft JDBC Driver 7.0 for SQL Server 页面，网址为 https://aka.ms/mssql-jdbc
+
+
+------------
+安装
+------------
+install.txt 中提供了有关安装 JDBC 驱动程序的说明。请参阅该文件，了解 
+有关在 Windows、Unix 和 Mac 操作系统上安装 JDBC 驱动程序的详细信息。
+
+
+---------------------------
+支持的操作系统
+---------------------------
+Microsoft JDBC Driver 7.0 for SQL Server 支持的操作系统包括：
+  Windows Server 2008 SP2
+  Windows Server 2008 R2 SP1
+  Windows Server 2012
+  Windows Server 2012 R2
+  Windows Server 2016
+  Windows 8
+  Windows 8.1
+  Windows 10
+  Linux
+  Mac
+
+上面的列表是某些受支持的操作系统的示例。JDBC 驱动程序 
+可在任何支持使用 Java 虚拟机 (JVM) 的操作系统上工作。
+
+但仅对 Linux 和 Mac OS（Ubuntu 18.04、CentOs 7、Suse 12、
+Mac OS 10.13）的最新操作系统进行了兼容性和支持方面的测试。
+
+
+----------------
+版本内容
+----------------
+Microsoft JDBC Driver 7.0 for SQL Server 可执行 zip 或 tar 文件将解压缩出以下文件 
+在指定位置（相对于选定的安装目录）解包以下文件：
+
+<安装目录>\sqljdbc_<版本>\<语言>\install.txt
+<安装目录>\sqljdbc_<版本>\<语言>\release.txt
+<安装目录>\sqljdbc_<版本>\<语言>\license.txt
+<安装目录>\sqljdbc_<版本>\<语言>\thirdpartynotices.txt
+<安装目录>\sqljdbc_<版本>\<语言>\mssql-jdbc-7.0.0.jre8.jar
+<安装目录>\sqljdbc_<版本>\<语言>\mssql-jdbc-7.0.0.jre10.jar
+<安装目录>\sqljdbc_<版本>\<语言>\auth\x86\sqljdbc_auth.dll
+<安装目录>\sqljdbc_<版本>\<语言>\auth\x64\sqljdbc_auth.dll
+<安装目录>\sqljdbc_<版本>\<语言>\samples\<示例文件...>
+<安装目录>\sqljdbc_<版本>\<语言>\xa\xa_install.sql
+<安装目录>\sqljdbc_<版本>\<语言>\xa\x86\sqljdbc_xa.dll
+<安装目录>\sqljdbc_<版本>\<语言>\xa\x64\sqljdbc_xa.dll
+
+有关每个组件的详细信息，请参阅联机文档 
+Microsoft JDBC Driver for SQL Server 文档：
+https://msdn.microsoft.com/en-us/library/dn197850(v=sql.10).aspx
+
+
+-------------
+文档
+-------------
+此包中包括版本信息、安装说明以及许可条款。
+联机可找到所有其他文档。
+
+请注意，已中止脱机帮助文件。
+
+
+---------
+JAR 文件
+---------
+为支持后向兼容性和可能的升级方案，JDBC Driver 7.0 的每个安装包中都包含 
+两个 JAR 类库：
+	mssql-jdbc-7.0.0.jre8.jar
+	mssql-jdbc-7.0.0.jre10.jar.
+
+
+----------------------
+特定于功能的文件
+----------------------
+Azure Active Directory 和集成身份验证（在 Windows 上）组件包含在  
+'auth' 目录中。
+
+JDBC 分布式事务组件包含在“xa”目录中。
+
+
+--------------------
+功能依赖关系
+--------------------
+Microsoft JDBC Driver 7.0 for SQL Server 中的一些功能依赖于 
+下列外部库：
+
+1.结合使用“Always Encrypted”与 Azure Key Vault 提供程序
+   依赖库：azure-keyvault(version 1.0.0) 和 adal4j(version 1.6.0)
+   
+2.在 Windows、Linux 和 Mac 操作系统中使用“Azure Active Directory 集成身份验证”
+   依赖库：adal4j(version 1.6.0)
+
+有关在标准 Java 应用程序或 Maven 应用程序中包含这些依赖库的详细信息 
+可在此处找到：https://go.microsoft.com/fwlink/?linkid=867575
+
+
+-------
+示例
+-------
+演示 JDBC 驱动程序各种功能的示例应用程序包含在 "samples"
+目录中。有关每个示例以及如何运行它们的详细信息，请参阅联机 
+文档。
+
+
+-----------
+更改列表
+-----------
+从 6.4.0.0 到 7.0.0.0 的更改：
+- 添加了对驱动程序的 JDK 10 支持，取代了 JDK9。
+- 将适用于 Java 的 Microsoft Azure Active Directory 身份验证库 (ADAL4J) 的 Maven 依赖项更新到了 
+  库的 1.6.0 版本。
+- 将驱动程序中的默认符合性级别更新到了 JDBC 4.2 规范。
+- 添加了对空间数据类型的支持。
+- 添加了新的连接属性 "cancelQueryTimeout" 以取消 Connection 和 Statement 上的  
+  QueryTimeout。
+- 为 JDBC 4.3 引入的 java.sql.Connection API beginRequest() 和 endRequest() 添加了实现。
+- 在 Azure Key Vault 提供程序中添加了返回的支持，以允许使用通过 'SQLServerKeyVaultAuthenticationCallback'  
+  实现的自定义方法进行身份验证以提取访问令牌。
+- 添加了在 ResultSet 上提取数据发现和分类信息的支持。
+- 添加了对 UTF-8 功能扩展的支持。
+- 将 Sha1 更改成了 CityHash，用于生成 PreparedStatement 句柄和元数据缓存键。
+- 将 'Automatic-Module-Name' 清单项添加到了生成的 jre10 jar，使驱动程序模块
+  'com.microsoft.sqlserver.jdbc' 可供 JDK 10 客户访问。
+
+改进：
+- 在维持 JDBC 与来自 sp_fkeys 结果的符合性的同时改进了性能。
+- 引入了新的连接属性 "useBulkCopyForBatchInsert"，使驱动程序
+  在执行批量插入操作时能够使用大容量复制 API。此功能仅在针对 Azure 数据仓库 
+  执行批量插入时可用，并且大大改进了插入操作的性能。
+
+Bug 修复：
+- 修复了当 ResultSet 游标移动或 ResultSet 关闭时 Blobs 变为不可用的问题。
+- 修复了在尝试向一个加密列插入一个空值或 Null 值时出现的问题。
+- 修复了当用户没有执行权限时，驱动程序将引发一条误导性错误消息的问题。
+- 修复了当 "multiSubnetFailover" 为 true 时，由 NUMA 节点之间不均匀的连接分布 
+  所导致的服务器端 CPU 相关性问题。
+- 修复了驱动程序没有完全分析 TDS 包以捕获执行的存储过程内 
+  引发的异常的问题。
+- 修复了当使用语句 API 时，通过切换为 ON 的 SHOWPLAN_TEXT 执行查询后 
+  驱动程序将引发异常的问题。
+- 修复了由尚未关闭的 ResultSet 创建的 ResultSetMetaData 实例 
+  不存在的问题。
+- 修复了当没有任何规模传递时 PreparedStatement.setBigDecimal() 的问题。
+- 修复了在 ResultSet/Connection 关闭后 Clobs/NClobs 不存在的问题。
+- 修复了当使用 Kerberos 约束委派时驱动程序释放用户创建的凭据的问题。
+- 修复了连接到 Azure 而被重定向时 "hostNameInCertificate" 的问题。
+- 修复了启用语句池时出现“未找到 Prepared Statement 句柄”错误的间歇性问题。
+- 修复了当查询超时时，引发 SQLServerException 而不是 java.sql.SQLTimeoutException 的 
+  语句问题。
+- 修复了与 JDBC 符合性冲突的问题，即驱动程序将生成的列作为 SS_IS_COMPUTED 而不是  
+  IS_GENERATED 返回。
+- 修复了当使用 getSchema() 检索元数据时已转义的目录名称问题。
+- 清除了套接字处理实现以对不同 JVM 的功能进行通用化，并且 
+  简化了单个 IP 地址案例的逻辑。
+
+  
+------------
+已知问题
+------------
+以下是 Microsoft JDBC Driver 7.0 for SQL Server 的已知问题：
+
+1) 使用 SQL SERVER 2008 OR 2008 R2 时的参数元数据限制
+
+1.a) PreparedStatement.getParameterMetadata() 在与参数化 MERGE 查询一起使用
+时引发 SQLException。
+
+1.b) 预定义语句的参数元数据不适用于具有子查询/联接的查询。
+
+
+2) 与 SQL AZURE 的连接被断开
+
+连接到 SQL Azure 时，空闲连接在处于不活动状态一定时间后可能被某个 
+网络组件（如防火墙）终止。若要避免通过网络组件断开空闲连接，
+应在加载驱动程序的操作系统上设定以下注册表 
+设置（或其非 Windows 等效项）：
+           
+注册表设置                                                                                                                                       推荐值
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime            30000
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveInterval         1000
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmission  10
+
+
+3) 当结合使用 TVP 和 SQL_VARIANT 时 
+
+3.a) 日期值
+
+当使用 TVP 填充一个表时，且该表包含 sql_variant 列中存储的 datetime/smalldatetime/date 值，
+在 ResultSet 上调用 getDateTime()/getSmallDateTime()/getDate() 将不起作用，并引发以下异常：
+
+	java.lang.String 不能强制转换为 java.sql.Timestamp
+
+解决方法：改为使用 getString() 或 getObject()。
+
+3.b) 对于 NULL 值，结合使用 TVP 与 SQL_VARIANT
+
+如果使用 TVP 填充一个表，并将 NULL 值发送给 sql_variant 列类型，会引发
+异常，因为当前不支持在 TVP 中对列类型 sql_variant 插入 NULL 值。
+
