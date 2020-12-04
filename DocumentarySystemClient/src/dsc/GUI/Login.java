@@ -163,6 +163,8 @@ public class Login extends JFrame implements ActionListener {
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
+					SystemGui in = new SystemGui();
+					in.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -196,7 +198,7 @@ public class Login extends JFrame implements ActionListener {
 
 }
 
-class BackgroundPanel extends JPanel {
+	class BackgroundPanel extends JPanel {
 	Image im;
 
 	public BackgroundPanel(Image im) {
