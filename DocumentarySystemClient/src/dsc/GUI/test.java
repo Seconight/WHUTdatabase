@@ -93,13 +93,13 @@ public class test extends JFrame {
 		JLabel label_4 = new JLabel("\u9662\u7CFB\uFF1A");//院系：
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_4.setBounds(14, 99, 120, 30);
+		label_4.setBounds(627, 99, 120, 30);
 		contentPane.add(label_4);
 		
 		JLabel label_5 = new JLabel("\u8BA1\u7B97\u673A\u79D1\u5B66\u4E0E\u6280\u672F");//计算机科学与技术
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_5.setBounds(133, 99, 320, 30);
+		label_5.setBounds(761, 99, 320, 30);
 		contentPane.add(label_5);
 		
 		JLabel label_6 = new JLabel("\u623F\u95F4\u53F7\uFF1A");//房间号：
@@ -126,13 +126,14 @@ public class test extends JFrame {
 		label_9.setBounds(761, 56, 272, 30);
 		contentPane.add(label_9);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setOpaque(false);
 		tabbedPane.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		tabbedPane.setBounds(0, 135, 1202, 608);
+		tabbedPane.setBounds(0, 92, 1202, 651);
 		contentPane.add(tabbedPane);
 		
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
 		tabbedPane.addTab("入住", null, panel, null);
 		
 		JPanel panel_1 = new JPanel();

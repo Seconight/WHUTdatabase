@@ -128,17 +128,17 @@ public class Register extends BaseGUI {
 		
 
 		passwordField.setFont(new Font("宋体", Font.PLAIN, 30));
-		passwordField.setBounds(552, 324, 200, 36);
+		passwordField.setBounds(552, 324, 250, 36);
 		bgp.add(passwordField);
 		
 
 		passwordField_1.setFont(new Font("宋体", Font.PLAIN, 30));
-		passwordField_1.setBounds(552, 373, 200, 36);
+		passwordField_1.setBounds(552, 373, 250, 36);
 		bgp.add(passwordField_1);
 		
 
 		button.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		button.setBounds(466, 437, 150, 36);
+		button.setBounds(526, 437, 150, 36);
 		bgp.add(button);
 		
 	}
