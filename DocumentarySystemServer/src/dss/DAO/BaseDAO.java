@@ -13,26 +13,28 @@ public class BaseDAO {
 	
     //连接数据库对象
     static Connection databaseConnection;
-
-    //连接数据库
-    public static void connectToDatabase() {
-    	 try
-    	    {
-    	        Class.forName(Constants.driverName);
-    	        databaseConnection=DriverManager.getConnection(
-    	        		Constants.dbURL,
-    	        		Constants.userName,
-    	        		Constants.password);
-    	        System.out.println("success!");
-    	     }
-    	      catch(Exception e)
-    	   {
-    	        e.printStackTrace();
-    	        System.out.print("fail!");
-    	   }
+    
+    //进行数据库的连接
+    static {
+    	try
+	    {
+	        Class.forName(Constants.driverName);
+	        databaseConnection=DriverManager.getConnection(
+	        		Constants.dbURL,
+	        		Constants.userName,
+	        		Constants.password);
+	        System.out.println("success!");
+	     }
+	      catch(Exception e)
+	   {
+	        e.printStackTrace();
+	        System.out.print("fail!");
+	   }
     }
-    //断开数据库连接
-    public static void closeDatabase() {
+    
+    //析构函数
+    @Override
+    protected void finalize() throws Throwable {
     	try {
     		databaseConnection.close();
 		} 
@@ -65,9 +67,7 @@ public class BaseDAO {
     //main function
     
     public static void main(String[] args) {
-		connectToDatabase();
-		testDataOut();
-		closeDatabase();
+		
 	}
 	
 }
