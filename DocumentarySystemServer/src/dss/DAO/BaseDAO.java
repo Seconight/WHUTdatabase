@@ -15,7 +15,7 @@ public class BaseDAO {
     static Connection databaseConnection;
     
     //进行数据库的连接
-    static {
+    protected void connect(){
     	try
 	    {
 	        Class.forName(Constants.driverName);
@@ -23,25 +23,34 @@ public class BaseDAO {
 	        		Constants.dbURL,
 	        		Constants.userName,
 	        		Constants.password);
-	        System.out.println("success!");
+	        //System.out.println("success!");
 	     }
 	      catch(Exception e)
 	   {
 	        e.printStackTrace();
-	        System.out.print("fail!");
+	        System.out.print("connect fail!");
 	   }
     }
     
-    //析构函数
-    @Override
-    protected void finalize() throws Throwable {
+    protected void disconnect() {
     	try {
-    		databaseConnection.close();
-		} 
-    	catch (SQLException e) {
-			// TODO: handle exception
+			databaseConnection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("disconnect failed");
 		}
     }
+    
+//    //析构函数
+//    @Override
+//    protected void finalize() throws Throwable {
+//    	try {
+//    		databaseConnection.close();
+//		} 
+//    	catch (SQLException e) {
+//			// TODO: handle exception
+//		}
+//    }
     
     //本函数用于测试数据库是否连接成功
     //测试之前将Room中加入数据
@@ -66,8 +75,4 @@ public class BaseDAO {
     }
     //main function
     
-    public static void main(String[] args) {
-		
-	}
-	
 }
