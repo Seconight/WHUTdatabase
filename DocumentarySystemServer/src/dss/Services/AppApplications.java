@@ -1,16 +1,18 @@
 package dss.Services;
 
+import java.sql.SQLException;
+
 import dss.Object.*;
 
 public interface AppApplications {
 	
 	//学生提交入住申请
-	public boolean applyForDor(Application application);
+	public boolean applyForDor(Application application) throws SQLException;
 	
-	//学生提交退宿申请
+	//学生提交退宿申请(我感觉没用，请忽略)
 	public boolean applyForExit(Application application);
 	
-	//学生提交更换宿舍或更改入住时间申请
+	//学生提交更换宿舍或更改入住时间申请(我感觉没用，请忽略)
 	public boolean applyForChange(Application application);
 	
 	//管理员查询一个申请表

@@ -6,7 +6,7 @@ import dss.Object.*;
 public interface RoomApplications {
 	
 	//学生查询空余宿舍信息
-	public List<Room> getSuitableRooms();
+	public List<Room> getSuitableRooms(Student currentStudent,Room targetRoom);
 	
 	//管理员更新宿舍信息
 	public boolean uploadRoomInfo(Room currentRoom);

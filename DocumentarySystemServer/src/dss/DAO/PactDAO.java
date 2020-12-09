@@ -113,7 +113,7 @@ public class PactDAO extends BaseDAO{
 			}
 			else {
 				connect();
-				
+				//
 				preparedStatement = databaseConnection.prepareStatement(
 						"delete from dbo.Pact where PNo=?;"
 						,PreparedStatement.NO_GENERATED_KEYS);

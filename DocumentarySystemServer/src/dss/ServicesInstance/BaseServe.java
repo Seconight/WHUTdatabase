@@ -6,9 +6,7 @@ import java.net.Socket;
 
 public class BaseServe {
 	
-	protected Socket client;
-	protected ObjectOutputStream output;
-	protected ObjectInputStream input;
+	
 	
 	
 	
