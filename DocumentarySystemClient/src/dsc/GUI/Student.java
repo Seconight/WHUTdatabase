@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
+import java.awt.*;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,6 +18,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+
+import javafx.scene.control.DatePicker;
+
 import java.awt.SystemColor;
 import javax.swing.JList;
 import javax.swing.JTable;
@@ -26,7 +32,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
+import javax.swing.JPasswordField;
 
 public class Student extends BaseGUI {
 	JLabel label_9 = new JLabel("2020\u5E7410\u670810\u65E5");//2020年10月10日
@@ -85,7 +91,6 @@ public class Student extends BaseGUI {
 	JLabel lblNewLabel = new JLabel("\u5B66\u53F7");//退租学号
 	JLabel label_14 = new JLabel("\u786E\u8BA4\u5BC6\u7801");//退租确认密码
 	JTextField textField_3 = new JTextField();//退租学号框
-	JTextField textField_4 = new JTextField();//退租确认密码框
 	JLabel label_15 = new JLabel("\u623F\u95F4\u9009\u62E9");//更换房间的房间选择
 	JTable table_1 = new JTable();
 	JMenuBar menuBar_1 = new JMenuBar();
@@ -117,6 +122,21 @@ public class Student extends BaseGUI {
 	JCheckBoxMenuItem checkBoxMenuItem_21 = new JCheckBoxMenuItem("300/月");//更换界面300/月
 	JCheckBoxMenuItem checkBoxMenuItem_22 = new JCheckBoxMenuItem("400/月");//更换界面400/月
 	JCheckBoxMenuItem checkBoxMenuItem_23 = new JCheckBoxMenuItem("所有月租");//更换界面所有月租
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private final JTextField textField_11 = new JTextField();
+	private final JTextField textField_12 = new JTextField();
+	private final JLabel label_27 = new JLabel("\u65E5");
+	private final JLabel label_28 = new JLabel("\u65E5");
+	private final JTextField textField_13 = new JTextField();
+	private final JLabel label_29 = new JLabel("\u65E5");
+	private final JLabel label_30 = new JLabel("\u65E5");
+	private final JTextField textField_14 = new JTextField();
+	private JPasswordField passwordField;
 	/**
 	 * Launch the application.
 	 */
@@ -137,11 +157,9 @@ public class Student extends BaseGUI {
 	 * Create the frame.
 	 */
 	public Student() {
-		textField_4.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_4.setBounds(541, 141, 300, 50);
-		textField_4.setColumns(10);
+		textField_3.setText("8888888888888");
 		textField_3.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_3.setBounds(526, 60, 250, 50);
+		textField_3.setBounds(526, 60, 277, 50);
 		textField_3.setColumns(10);
 			
 
@@ -341,7 +359,7 @@ public class Student extends BaseGUI {
 		
 
 		label_11.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_11.setBounds(5, 464, 240, 50);
+		label_11.setBounds(5, 471, 240, 50);
 		panel.add(label_11);
 		
 		JScrollBar scrollBar = new JScrollBar();
@@ -350,34 +368,96 @@ public class Student extends BaseGUI {
 		
 
 		label_12.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_12.setBounds(465, 464, 240, 50);
+		label_12.setBounds(5, 534, 240, 50);
 		panel.add(label_12);
+		textField.setText("2020");
 		
 
 		textField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField.setBounds(255, 464, 200, 50);
+		textField.setBounds(259, 471, 90, 50);
 		panel.add(textField);
 		textField.setColumns(10);
+		textField_1.setText("2020");
 		
 
 		textField_1.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		textField_1.setColumns(10);
-		textField_1.setBounds(715, 464, 200, 50);
+		textField_1.setBounds(259, 534, 90, 50);
 		panel.add(textField_1);
 		label_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_13.setBounds(925, 464, 80, 50);
+		label_13.setBounds(595, 499, 80, 50);
 		
 		panel.add(label_13);
+		textField_2.setText("22");
 		textField_2.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		textField_2.setColumns(10);
-		textField_2.setBounds(1015, 464, 150, 50);
+		textField_2.setBounds(691, 499, 48, 50);
 		
 		panel.add(textField_2);
 		
 
 		btnNewButton.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		btnNewButton.setBounds(481, 534, 240, 50);
+		btnNewButton.setBounds(852, 499, 240, 50);
 		panel.add(btnNewButton);
+		
+		textField_7 = new JTextField();
+		textField_7.setText("10");
+		textField_7.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_7.setColumns(10);
+		textField_7.setBounds(389, 471, 40, 50);
+		panel.add(textField_7);
+		
+		JLabel label_18 = new JLabel("\u5E74");
+		label_18.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_18.setBounds(349, 471, 40, 50);
+		panel.add(label_18);
+		
+		JLabel label_19 = new JLabel("\u6708");
+		label_19.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_19.setBounds(428, 471, 40, 50);
+		panel.add(label_19);
+		
+		JLabel label_20 = new JLabel("\u6708");
+		label_20.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_20.setBounds(738, 499, 40, 50);
+		panel.add(label_20);
+		
+		JLabel label_21 = new JLabel("\u6708");
+		label_21.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_21.setBounds(428, 534, 40, 50);
+		panel.add(label_21);
+		
+		textField_8 = new JTextField();
+		textField_8.setText("10");
+		textField_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_8.setColumns(10);
+		textField_8.setBounds(389, 534, 40, 50);
+		panel.add(textField_8);
+		
+		JLabel label_22 = new JLabel("\u5E74");
+		label_22.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_22.setBounds(349, 534, 40, 50);
+		panel.add(label_22);
+		textField_11.setText("22");
+		textField_11.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_11.setColumns(10);
+		textField_11.setBounds(466, 471, 48, 50);
+		
+		panel.add(textField_11);
+		textField_12.setText("22");
+		textField_12.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_12.setColumns(10);
+		textField_12.setBounds(466, 534, 48, 50);
+		
+		panel.add(textField_12);
+		label_27.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_27.setBounds(513, 471, 40, 50);
+		
+		panel.add(label_27);
+		label_28.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_28.setBounds(513, 534, 40, 50);
+		
+		panel.add(label_28);
 		panel_1.setBackground(Color.CYAN);
 		
 		panel_1.setLayout(null);
@@ -398,7 +478,10 @@ public class Student extends BaseGUI {
 		
 		panel_1.add(textField_3);
 		
-		panel_1.add(textField_4);
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		passwordField.setBounds(535, 141, 300, 50);
+		panel_1.add(passwordField);
 		panel_2.setBackground(Color.CYAN);
 		
 		panel_2.setLayout(null);
@@ -505,5 +588,85 @@ public class Student extends BaseGUI {
 		scrollBar_1.setBounds(1169, 49, 21, 407);
 		
 		panel_2.add(scrollBar_1);
+		
+		JLabel label_16 = new JLabel("\u5F53\u524D\u7ED3\u675F\u65F6\u95F4");
+		label_16.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_16.setBounds(5, 464, 240, 50);
+		panel_2.add(label_16);
+		
+		JLabel label_17 = new JLabel("\u66F4\u6362\u7ED3\u675F\u65F6\u95F4");
+		label_17.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_17.setBounds(625, 464, 240, 50);
+		panel_2.add(label_17);
+		
+		textField_5 = new JTextField();
+		textField_5.setText("2020");
+		textField_5.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_5.setColumns(10);
+		textField_5.setBounds(259, 464, 90, 50);
+		panel_2.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setText("2020");
+		textField_6.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_6.setColumns(10);
+		textField_6.setBounds(879, 464, 90, 50);
+		panel_2.add(textField_6);
+		
+		JLabel label_23 = new JLabel("\u5E74");
+		label_23.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_23.setBounds(349, 464, 40, 50);
+		panel_2.add(label_23);
+		
+		textField_9 = new JTextField();
+		textField_9.setText("10");
+		textField_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_9.setColumns(10);
+		textField_9.setBounds(390, 464, 40, 50);
+		panel_2.add(textField_9);
+		
+		JLabel label_24 = new JLabel("\u6708");
+		label_24.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_24.setBounds(430, 464, 40, 50);
+		panel_2.add(label_24);
+		
+		JLabel label_25 = new JLabel("\u5E74");
+		label_25.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_25.setBounds(969, 464, 40, 50);
+		panel_2.add(label_25);
+		
+		textField_10 = new JTextField();
+		textField_10.setText("10");
+		textField_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_10.setColumns(10);
+		textField_10.setBounds(1008, 464, 40, 50);
+		panel_2.add(textField_10);
+		
+		JLabel label_26 = new JLabel("\u6708");
+		label_26.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_26.setBounds(1048, 464, 40, 50);
+		panel_2.add(label_26);
+		textField_13.setText("22");
+		textField_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_13.setColumns(10);
+		textField_13.setBounds(470, 464, 48, 50);
+		
+		panel_2.add(textField_13);
+		label_29.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_29.setBounds(518, 464, 40, 50);
+		
+		panel_2.add(label_29);
+		label_30.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_30.setBounds(1130, 464, 40, 50);
+		
+		panel_2.add(label_30);
+		textField_14.setText("22");
+		textField_14.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		textField_14.setColumns(10);
+		textField_14.setBounds(1088, 464, 48, 50);
+		
+		panel_2.add(textField_14);
+		
+
 	}
 }
