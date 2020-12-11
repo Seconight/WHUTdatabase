@@ -50,7 +50,6 @@ public class PactInstance extends BaseServe implements PactApplications {
 		// TODO Auto-generated method stub
 		Pact result = null;
 		PactDAO pactDAO = new PactDAO();
-		
 		Enumeration<Pact> e = pactDAO.getAll();
 		while (e.hasMoreElements()) {
 			Pact pact = (Pact) e.nextElement();
@@ -58,7 +57,6 @@ public class PactInstance extends BaseServe implements PactApplications {
 				result = pact;
 			}
 		}
-		
 		return result;
 	}
 
@@ -67,6 +65,7 @@ public class PactInstance extends BaseServe implements PactApplications {
 		// TODO Auto-generated method stub
 		ArrayList<Pact> pactSet = new ArrayList<Pact>();
 		PactDAO pactDAO = new PactDAO();
+
 		Enumeration<Pact> e = pactDAO.getAll();
 		while (e.hasMoreElements()) {
 			Pact pact = (Pact) e.nextElement();

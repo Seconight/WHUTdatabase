@@ -20,7 +20,12 @@ public class ApplicaitonDAO extends BaseDAO{
 		
 		//构造函数
 		public ApplicaitonDAO() {
-			
+			try {
+				flush();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		//用于保存表项信息

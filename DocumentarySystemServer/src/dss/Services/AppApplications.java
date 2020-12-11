@@ -6,7 +6,7 @@ import dss.Object.*;
 
 public interface AppApplications {
 	
-	//学生提交入住申请
+	//学生提交申请表
 	public boolean applyForDor(Application application) throws SQLException;
 	
 	//学生提交退宿申请(我感觉没用，请忽略)

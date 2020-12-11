@@ -32,6 +32,7 @@ public class BaseDAO {
 	   }
     }
     
+    //关闭数据库的连接
     protected void disconnect() {
     	try {
 			databaseConnection.close();
@@ -41,38 +42,5 @@ public class BaseDAO {
 		}
     }
     
-//    //析构函数
-//    @Override
-//    protected void finalize() throws Throwable {
-//    	try {
-//    		databaseConnection.close();
-//		} 
-//    	catch (SQLException e) {
-//			// TODO: handle exception
-//		}
-//    }
-    
-    //本函数用于测试数据库是否连接成功
-    //测试之前将Room中加入数据
-    public static void testDataOut() {
-    	try {
-			Statement stmt = databaseConnection.createStatement();
-			String sql="select * from dbo.Room;";
-			//stmt.execute(s);
-			ResultSet resultSet = stmt.executeQuery(sql);
-			
-			while(resultSet.next()) {
-				String cno = resultSet.getString(1);
-				int credit = resultSet.getInt(3);
-				System.out.println(cno+" "+" money:"+credit);
-			}
-			stmt.close();
-			resultSet.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    //main function
     
 }

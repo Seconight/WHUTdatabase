@@ -31,8 +31,9 @@ public class PactDAO extends BaseDAO{
 			connect();
 			statement = databaseConnection.createStatement();
 			String sql = "select * from dbo.Pact";
-			resultSet = statement.executeQuery(sql);
 			
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
 			String PNo = resultSet.getString("PNo");
 			String PSTime = resultSet.getString("PSTime");
 			float PMoney = resultSet.getFloat("PMoney");
@@ -42,7 +43,7 @@ public class PactDAO extends BaseDAO{
 			
 			Pact current = new Pact(PNo,PSTime,PMoney,PTime,PRNo,PSNo);
 			pactTable.put(PNo,current);
-			
+			}
 			terminate();
 			disconnect();
 		}
@@ -128,6 +129,7 @@ public class PactDAO extends BaseDAO{
 		
 		//获取全部数据
 		public Enumeration<Pact> getAll() throws SQLException{
+			flush();
 			return this.pactTable.elements();
 		}
 		
