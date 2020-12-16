@@ -1,7 +1,13 @@
 package dss.Object;
 
-public class Application {
+import java.io.Serializable;
+
+public class Application implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1124588076481265690L;
 	private String ANo;			//申请表号
 	private int AType;			//申请类型
 	private String AATime;		//提交申请日期

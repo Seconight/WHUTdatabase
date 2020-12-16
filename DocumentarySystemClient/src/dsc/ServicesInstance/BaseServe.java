@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.*;
 
-import dsc.Object.Message;
+import dss.Object.Message;
 
 public class BaseServe {
 	

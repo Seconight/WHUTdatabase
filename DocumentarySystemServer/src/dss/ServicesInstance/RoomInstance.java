@@ -28,8 +28,6 @@ public class RoomInstance extends BaseServe implements RoomApplications{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
 		return rooms;
 	}
 

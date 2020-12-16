@@ -1,7 +1,7 @@
 package dsc.ServicesInstance;
 
-import dsc.Object.Application;
-import dsc.Services.*;
+import dss.Object.Application;
+import dss.Services.*;
 
 public class AppInstance extends BaseServe implements AppApplications{
 

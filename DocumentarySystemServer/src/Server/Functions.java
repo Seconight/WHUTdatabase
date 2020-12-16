@@ -17,6 +17,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import dss.Object.*;
+import dss.ServicesInstance.*;
 
 
 
@@ -29,22 +30,26 @@ public abstract class Functions implements Serializable{
 	protected Message message;
 	protected Socket a;
 	
-	
+	//服务实例，用于处理用户发来的信息
+	AppInstance appInstance = new AppInstance();
+	PactInstance pactInstance = new PactInstance();
+	RoomInstance roomInstance = new RoomInstance();
+	StudentInstance studentInstance = new StudentInstance();
 	
 	//to add functions
 	//静态函数，在构建对象时运行，同时也方便新增功能
 	static {
 		
-//		functions.put("LOGIN",new Login());
-//		functions.put("ALLUSER",new GetAllUserFunc());
-//		functions.put("ALLDOC",new GetAllDocFunc());
-//		functions.put("UPUSER",new UpdateUserFunc());
-//		functions.put("DEUSER",new DeleteUserFunc());
-//		functions.put("INUSER",new InsertUserFunc());
-//		functions.put("SEUSER",new SearchUserFunc());
-//		functions.put("INDOC",new InsertDocFunc());
-//		functions.put("CHPA",new ChangePasswordFunc());
-//		functions.put("SEDOC",new SearchDocFunc());
+		functions.put("LOGINSTU",new LoginStu());
+		functions.put("CHANGEPASSWORD", new ChangePassword());
+		functions.put("GETALLSTU",new GetStudentInfo());
+		functions.put("REGISTER",new Register());
+		functions.put("ADDPACT",new AddPact());
+		functions.put("DELETEPACT",new DeletePact());
+		functions.put("UPDATEPACT",new UpdatePact());
+		functions.put("CHECKPACT", new CheckPactStu());
+		functions.put("GETALLPACT",new GetAllPact());
+		
 	}
 	
 	
@@ -57,6 +62,7 @@ public abstract class Functions implements Serializable{
 		this.a = a;
 	}
 	
+	//析构函数
 	@Override
 	protected void finalize() throws Throwable {
 		// TODO Auto-generated method stub
@@ -64,8 +70,6 @@ public abstract class Functions implements Serializable{
 		input.close();
 		output.close();
 	}
-	
-	
 	
 	//寻找对应的服务
 	public static Functions searchFunctions(String f) {
@@ -94,6 +98,149 @@ public abstract class Functions implements Serializable{
 			output.writeObject(message);
 			output.flush();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+//学生登录服务
+class LoginStu extends Functions{
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		String name = (String)message.getValueObject("name");
+		String password = (String)message.getValueObject("password");
+		System.out.println(name + " LOGIN");
+		Student current = studentInstance.studentLogin(name, password);
+		message.setObj(current);
+		feedback();
+	}
+}
+
+//修改密码服务
+class ChangePassword extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		String id = (String)message.getValueObject("id");
+		String uPassword = (String)message.getValueObject("up");
+		String newPassword = (String)message.getValueObject("np");
+		System.out.println(id + " CHANGEPASSWORD");
+		Student current = studentInstance.changePassword(id, uPassword, newPassword);
+		message.setObj(current);
+		feedback();
+		
+	}
+}
+
+//获取学生信息服务
+class GetStudentInfo extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		List<Student> s = studentInstance.getStudentsInfo();
+		System.out.println("GETALLSTUDENT");
+		message.setObj(s);
+		feedback();
+	}
+}
+
+//学生注册服务
+class Register extends Functions{
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Student addNew = (Student)message.getObject();
+		System.out.println("REGISTER");
+		message.setObj(studentInstance.studentRegister(addNew));
+		feedback();
+	}
+}
+
+//新增合同服务
+class AddPact extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		try {
+			message.setJudge(pactInstance.addNewPact((Pact)message.getObject()));
+			System.out.println("ADD_NEW_PACT");
+			feedback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+//删除合同服务
+class DeletePact extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		try {
+			message.setJudge(pactInstance.deletePact((Pact)message.getObject()));
+			System.out.println("DELETE_PACT");
+			feedback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+//更新合同服务
+class UpdatePact extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		try {
+			message.setJudge(pactInstance.uploadPact((Pact)message.getObject()));
+			System.out.println("UPDATE_PACT");
+			feedback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+//根据学生查询合同
+class CheckPactStu extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Student current = (Student)message.getObject();
+		try {
+			Pact result = pactInstance.checkStuPact(current);
+			message.setObj(result);
+			feedback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+//获得所有合同
+class GetAllPact extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		System.out.println("GETALLPACT");
+		try {
+			List<Pact> result = pactInstance.getAllPacts();
+			message.setObj(result);
+			feedback();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

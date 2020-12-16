@@ -1,6 +1,9 @@
 
 import dss.Object.*;
 import dss.ServicesInstance.*;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -8,6 +11,8 @@ import java.util.Hashtable;
 import java.util.List;
 
 import dss.DAO.*;
+import Server.*;
+import Server.Process;
 
 public class Enter {
 	public static void main(String[] args) throws SQLException {
@@ -16,6 +21,11 @@ public class Enter {
 		PactInstance pactInstance = new PactInstance();
 		RoomInstance roomInstance = new RoomInstance();
 		StudentInstance studentInstance = new StudentInstance();
+		
+		//¿ªÆô·þÎñÆ÷
+		Process process = new Process();
+		process.beginning();
+		
 		
 		//²âÊÔ
 //		application²âÊÔ

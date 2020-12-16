@@ -1,8 +1,14 @@
 package dss.Object;
 
+import java.io.Serializable;
+
 //表示学生实体
-public class Student {
+public class Student implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8035546375049859715L;
 	private String name;			//学生姓名
 	private String nubmer;			//学生学号
 	private String department;		//学生院系

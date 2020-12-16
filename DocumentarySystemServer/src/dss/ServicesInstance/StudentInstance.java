@@ -15,14 +15,14 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 	public Student studentLogin(String id, String password) {
 		// TODO Auto-generated method stub
 		
-		Student result = new Student();
+		Student result = null;
 		
 		try {
 			StudentDAO studentDAO = new StudentDAO();
 			Enumeration<Student> e = studentDAO.getAll();
 			while (e.hasMoreElements()) {
 				Student student = (Student) e.nextElement();
-				if(student.getName().equals(id) && student.getPassword().equals(password))
+				if(student.getNubmer().equals(id) && student.getPassword().equals(password))
 					result = student;
 			}
 		} catch (SQLException e) {
@@ -35,13 +35,13 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 
 	@Override
 	public Student changePassword(String id, String uPassword, String newPassword) {
-		Student result = new Student();
+		Student result = null;
 		try {
 			StudentDAO studentDAO = new StudentDAO();
 			Enumeration<Student> e = studentDAO.getAll();
 			while (e.hasMoreElements()) {
 				Student student = (Student) e.nextElement();
-				if(student.getName().equals(id) && student.getPassword().equals(uPassword))
+				if(student.getNubmer().equals(id) && student.getPassword().equals(uPassword))
 				{	
 					student.setPassword(newPassword);
 					if(studentDAO.update(student)) {
@@ -67,6 +67,7 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 			Enumeration<Student> e = studentDAO.getAll();
 			while (e.hasMoreElements()) {
 				Student student = (Student) e.nextElement();
+				
 				arrayList.add(student);
 			}
 		} catch (SQLException e) {
@@ -80,7 +81,7 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 	public Student studentRegister(Student currentStudent) {
 		// TODO Auto-generated method stub
 		
-		Student result = new Student();
+		Student result = null;
 		try {
 			StudentDAO studentDAO = new StudentDAO();
 			if(studentDAO.insert(currentStudent)) {

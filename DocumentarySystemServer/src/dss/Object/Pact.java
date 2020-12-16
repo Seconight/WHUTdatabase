@@ -1,6 +1,12 @@
 package dss.Object;
 
-public class Pact {
+import java.io.Serializable;
+
+public class Pact implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9192591337101139483L;
 	private String PNo;			//住宿号
 	private String PSTime;		//合同开始时间
 	private float PMoney;		//合同金额

@@ -1,7 +1,13 @@
 package dss.Object;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8729958241992957177L;
 	private String number;			//房间号
 	private String type;			//房间类型
 	private float money;			//房月租金

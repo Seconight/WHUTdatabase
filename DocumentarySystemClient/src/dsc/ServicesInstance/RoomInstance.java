@@ -2,17 +2,14 @@ package dsc.ServicesInstance;
 
 import java.util.List;
 
-import dsc.Object.Room;
-import dsc.Services.*;
+import dss.Object.Room;
+import dss.Object.Student;
+import dss.Services.*;
 
 
 public class RoomInstance extends BaseServe implements RoomApplications{
 
-	@Override
-	public List<Room> getSuitableRooms() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public boolean uploadRoomInfo(Room currentRoom) {
@@ -40,6 +37,12 @@ public class RoomInstance extends BaseServe implements RoomApplications{
 
 	@Override
 	public Room getRoom(String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Room> getSuitableRooms(Student currentStudent, Room targetRoom) {
 		// TODO Auto-generated method stub
 		return null;
 	}
