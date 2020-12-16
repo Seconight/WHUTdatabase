@@ -22,7 +22,7 @@ public class Constants {
 	public static Connection databaseConnection;
 	
 	//一型宿舍介绍
-	public static String R1INTRO = "";
+	public static String R1INTRO = "b";
 	
 	//二型宿舍介绍
 	public static String R2INTRO = "";
