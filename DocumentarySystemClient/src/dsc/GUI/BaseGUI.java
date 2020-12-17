@@ -17,14 +17,28 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dsc.ServicesInstance.AppInstance;
+import dsc.ServicesInstance.PactInstance;
+import dsc.ServicesInstance.RoomInstance;
+import dsc.ServicesInstance.StudentInstance;
+import dss.Object.Student;
+
 import javax.swing.JLabel;
 
 public class BaseGUI extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	AppInstance appInstance = new AppInstance();
+	PactInstance pactInstance = new PactInstance();
+	RoomInstance roomInstance = new RoomInstance();
+	StudentInstance studentInstance = new StudentInstance();
+	
+	
+	Student currentStudent = new Student();
+	public  static final long serialVersionUID = 1L;
 	Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
-	private JPanel contentPane = new JPanel();
+	public JPanel contentPane = new JPanel();
 	boolean isDragged = false;
 	Point loc = null;
 	Point tmp = null;
@@ -58,7 +72,7 @@ public class BaseGUI extends JFrame {
 
 		setBounds((screensize.width - 1202) / 2, (screensize.height - 743) / 2, 1202, 743);
 
-		contentPane.setBorder(new EmptyBorder(5,5,5,5));
+		contentPane.setBorder(new EmptyBorder(0,0,0,0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
@@ -82,7 +96,11 @@ public class BaseGUI extends JFrame {
 		bgp.add(button_minimize);
 	}
 	//窗口拖拽移动实现
-		private void setDragable() {
+	public void DisPose()
+	{
+		this.dispose();
+	}
+ 	private void setDragable() {
 			this.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseReleased(java.awt.event.MouseEvent e) {
 					isDragged = false;
@@ -105,6 +123,7 @@ public class BaseGUI extends JFrame {
 			});
 		}
 }
+
 
 class BackgroundPanel extends JPanel {
 	Image im;

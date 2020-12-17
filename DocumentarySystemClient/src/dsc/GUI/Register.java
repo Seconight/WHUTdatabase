@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,7 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import dss.Object.Student;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Register extends BaseGUI {
 	private JTextField textField=new JTextField();//姓名框;
@@ -28,28 +34,13 @@ public class Register extends BaseGUI {
 	JLabel lblNewLabel_5 = new JLabel("\u5BC6\u7801");//密码
 	JLabel lblNewLabel_6 = new JLabel("\u786E\u8BA4\u5BC6\u7801");//确认密码
 	JButton button = new JButton("\u6CE8\u518C");//注册按钮
-	JComboBox comboBox = new JComboBox();//系
-	JComboBox comboBox_1 = new JComboBox();//性别
-	JComboBox comboBox_2 = new JComboBox();//年龄
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Register frame = new Register();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	String[] dept= {"经济","管理","能动","航海","机设","外国语","马克思主义","计算机科学与技术","化生","物流"};
+	JComboBox comboBox = new JComboBox(dept);//系
+	String []sex= {"男","女"};
+	JComboBox comboBox_1 = new JComboBox(sex);//性别
+	String[] age= {"15","16","17","18","19","20","21","22","23","24","25","26","27"};
+	JComboBox comboBox_2 = new JComboBox(age);//年龄
+	
 	public Register() {
 
 		label.setForeground(Color.WHITE);
@@ -100,6 +91,7 @@ public class Register extends BaseGUI {
 		bgp.add(lblNewLabel_6);
 		
 
+		
 		comboBox.setFont(new Font("宋体", Font.PLAIN, 30));
 		comboBox.setBounds(552, 270, 250, 36);
 		bgp.add(comboBox);
@@ -140,6 +132,42 @@ public class Register extends BaseGUI {
 		button.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		button.setBounds(526, 437, 150, 36);
 		bgp.add(button);
-		
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String name=textField.getText();
+				String No=textField_1.getText();
+				String pwd=new String(passwordField.getPassword());
+				String pwd1=new String(passwordField_1.getPassword());
+				String dept=(String)comboBox.getSelectedItem();
+				String sex=(String)comboBox_1.getSelectedItem();
+				int sex1=0;
+				if(sex.equals("男"))
+				{
+					sex1=1;
+				}
+				int age=Integer.parseInt((String) comboBox_2.getSelectedItem());
+				if(pwd.equals(pwd1))
+				{
+					Student student=new Student(No,age,name,dept,sex1,pwd,null);
+					if(studentInstance.studentRegister(student)!=null)
+					{
+						JOptionPane.showMessageDialog(null,  "注册成功", "请返回登陆界面！",JOptionPane.ERROR_MESSAGE);
+						DisPose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null,  "当前学号已存在！", "请重新输入学号",JOptionPane.ERROR_MESSAGE);
+						textField_1.setText("");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null,  "两次密码不同", "请重新输入密码和确认密码",JOptionPane.ERROR_MESSAGE);
+					passwordField.setText("");
+					passwordField_1.setText("");
+				}
+			}
+		});
 	}
 }

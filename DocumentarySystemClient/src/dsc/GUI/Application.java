@@ -20,8 +20,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JTextField;
 
-public class Application extends JFrame {
+public class Application extends JFrame  {
 	private static final long serialVersionUID = 1L;
 	Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JPanel contentPane = new JPanel();
@@ -59,6 +60,8 @@ public class Application extends JFrame {
 	private final JLabel label_24 = new JLabel("\u91D1\u989D\u4FE1\u606F\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014");
 	private final JLabel label_25 = new JLabel("\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u91D1\u989D\u4FE1\u606F");
 	private final JPanel panel = new JPanel();
+	private JTextField textField;
+	private JTextField txtn;
 	/**
 	 * Launch the application.
 	 */
@@ -110,16 +113,16 @@ public class Application extends JFrame {
 		label.setBounds(0, 0, 80, 40);
 		panel.add(label);
 		
-		label_1.setBounds(0, 49, 160, 40);
+		label_1.setBounds(0, 38, 160, 40);
 		label_1.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_1);
-		label_2.setBounds(94, 140, 160, 40);
+		label_2.setBounds(94, 106, 160, 40);
 		label_2.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_2);
-		label_3.setBounds(14, 210, 240, 40);
+		label_3.setBounds(14, 147, 240, 40);
 		label_3.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_3);
-		label_4.setBounds(94, 280, 160, 40);
+		label_4.setBounds(94, 184, 160, 40);
 		label_4.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_4);
 		label_5.setBounds(40, 701, 160, 40);
@@ -128,31 +131,31 @@ public class Application extends JFrame {
 		label_6.setBounds(40, 772, 160, 40);
 		label_6.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_6);
-		label_7.setBounds(54, 350, 200, 40);
+		label_7.setBounds(54, 222, 200, 40);
 		label_7.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_7);
-		label_8.setBounds(94, 420, 160, 40);
+		label_8.setBounds(14, 320, 160, 40);
 		label_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_8);
-		label_9.setBounds(94, 490, 160, 40);
+		label_9.setBounds(14, 459, 160, 40);
 		label_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_9);
-		label_10.setBounds(134, 560, 120, 40);
+		label_10.setBounds(134, 258, 120, 40);
 		label_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_10);
 		label_11.setBounds(84, 0, 210, 40);
 		label_11.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_11);
-		label_12.setBounds(171, 49, 22, 40);
+		label_12.setBounds(174, 38, 22, 40);
 		label_12.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_12);
-		label_13.setBounds(270, 140, 290, 40);
+		label_13.setBounds(268, 106, 290, 40);
 		label_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_13);
-		label_14.setBounds(268, 210, 290, 40);
+		label_14.setBounds(268, 147, 290, 40);
 		label_14.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_14);
-		label_15.setBounds(268, 280, 91, 40);
+		label_15.setBounds(268, 184, 91, 40);
 		label_15.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_15);
 		label_16.setBounds(228, 701, 150, 40);
@@ -161,16 +164,16 @@ public class Application extends JFrame {
 		label_17.setBounds(228, 772, 150, 40);
 		label_17.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_17);
-		label_18.setBounds(270, 350, 294, 40);
+		label_18.setBounds(268, 222, 294, 40);
 		label_18.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_18);
-		label_19.setBounds(270, 420, 147, 40);
+		label_19.setBounds(174, 320, 147, 40);
 		label_19.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_19);
-		label_20.setBounds(270, 490, 147, 40);
+		label_20.setBounds(174, 459, 147, 40);
 		label_20.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_20);
-		label_21.setBounds(270, 560, 210, 40);
+		label_21.setBounds(268, 258, 210, 40);
 		label_21.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_21);
 		
@@ -186,7 +189,7 @@ public class Application extends JFrame {
 		button_1.setBounds(249, 887, 120, 40);
 		panel.add(button_1);
 		label_22.setFont(new Font("华光楷体一_CNKI", Font.ITALIC, 30));
-		label_22.setBounds(10, 102, 598, 30);
+		label_22.setBounds(0, 76, 598, 30);
 		
 		panel.add(label_22);
 		label_23.setFont(new Font("华光楷体一_CNKI", Font.ITALIC, 30));
@@ -201,6 +204,18 @@ public class Application extends JFrame {
 		label_25.setBounds(24, 825, 570, 30);
 		
 		panel.add(label_25);
+		
+		textField = new JTextField();
+		textField.setBounds(14, 360, 580, 98);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		txtn = new JTextField();
+		txtn.setText("\u5BBF\u820D\u91C7\u5149\u826F\u597D\uFF0C\u51AC\u6696\u590F\u51C9\uFF0C\u914D\u5907\u6709\u7A7A\u8C03\\n\u6D17\u8863\u673A\u7B49\u5148\u8FDB\u5BB6\u7535");
+		txtn.setFont(new Font("微软雅黑", Font.PLAIN, 30));
+		txtn.setColumns(10);
+		txtn.setBounds(14, 502, 580, 98);
+		panel.add(txtn);
 		
 	
 	}

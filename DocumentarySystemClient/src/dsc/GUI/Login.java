@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class Login extends BaseGUI implements ActionListener {
+public class Login extends BaseGUI {
 	private JTextField text_account = new JTextField();// 账号框
 	private JTextField text_password = new JPasswordField();// 密码框
 	JLabel label = new JLabel(
@@ -39,7 +39,6 @@ public class Login extends BaseGUI implements ActionListener {
 	 * 创建界面
 	 */
 	public Login() {
-
 		label.setForeground(new Color(255, 255, 255));
 		label.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		label.setBounds(291, 74, 640, 39);
@@ -66,111 +65,52 @@ public class Login extends BaseGUI implements ActionListener {
 		text_password.setColumns(10);
 		button_login.setForeground(Color.WHITE);
 		button_login.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 33));
+		button_login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//获得账号
+				String No=text_account.getText();
+				//获得密码
+				String pwd=text_password.getText();
+				//登陆验证
+				dss.Object.Student student = studentInstance.studentLogin(No, pwd);
+				if(student == null) {
+					JOptionPane.showMessageDialog(null,  "请重新输入账号和密码", "账号密码不匹配",JOptionPane.ERROR_MESSAGE);
+					text_account.setText("");
+					text_password.setText("");
+				}
+				else {
+				
+					currentStudent = student;
+					StudentGUI std=new StudentGUI(currentStudent);
+					std.setVisible(true);
+					DisPose();
+				}
+			}
+		});
+		
 
 		button_login.setBounds(501, 310, 100, 34);
 		button_login.setContentAreaFilled(false);//设置按钮透明
 		bgp.add(button_login);
-		button_register.setForeground(Color.WHITE);
-		button_register.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 33));
-		
+	
 		
 		button_register.setBounds(611, 310, 100, 34);
 		button_register.setContentAreaFilled(false);//设置按钮透明
+		button_register.setForeground(Color.WHITE);
+		button_register.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 33));
+		button_register.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			Register register=new Register();
+			register.setVisible(true);
+			}
+		});
 		bgp.add(button_register);
 
-	}
-
-	/**
-	 * @author 15758 
-	 * 登陆事件
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		boolean flag = false;// 用来标志用户是否正确
-		try {
-			if ((JButton) e.getSource() == button_login) {
-
-				for (;;) {// 遍历所有用户信息，以此来判断输入的信息是否正确
-
-					if (true) {
-						if (flag) {// 如果时学生
-
-						} else {// 如果时宿管
-
-						}
-						flag = true;
-						break;// 如果信息正确就退出遍历，提高效率
-					}
-				}
-				if (!flag) {// 信息不正确，重新输入
-
-				} else {
-					// 当输入的信息正确时，就开始加载选项卡界面，并把选项卡界面加入到卡片布局器中
-					//new SystemGui();
-				}
-			}
-		} catch (Exception e2) {
-			// TODO: handle exception
-			JOptionPane.showMessageDialog(null, "发生异常", "警告",JOptionPane.WARNING_MESSAGE);
-			new Login();
-		}
 	}
 
 	/**
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-//窗口拖拽移动实现
-//	private void setDragable() {
-//		this.addMouseListener(new java.awt.event.MouseAdapter() {
-//			public void mouseReleased(java.awt.event.MouseEvent e) {
-//				isDragged = false;
-//				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//			}
-//
-//			public void mousePressed(java.awt.event.MouseEvent e) {
-//				tmp = new Point(e.getX(), e.getY());
-//				isDragged = true;
-//				setCursor(new Cursor(Cursor.MOVE_CURSOR));
-//			}
-//		});
-//		this.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-//			public void mouseDragged(java.awt.event.MouseEvent e) {
-//				if (isDragged) {
-//					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
-//					setLocation(loc);
-//				}
-//			}
-//		});
-//	}
-//}
-//
-//	class BGPanel extends JPanel {
-//	Image im;
-//
-//	public BGPanel(Image im) {
-//		this.im = im;
-//		this.setOpaque(true);
-//	}
-//
-//	// Draw the back ground.
-//	public void paintComponent(Graphics g) {
-//		super.paintComponents(g);
-//		g.drawImage(im, 0, 0, this.getWidth(), this.getHeight(), this);
-//
-//	}
 }

@@ -1,10 +1,28 @@
+import java.awt.EventQueue;
 import java.util.List;
+
+import dsc.GUI.Login;
 import dsc.ServicesInstance.*;
 import dss.Object.*;
 //测试类，用于测试客户端与服务端的连接
 public class Test {
 	
 	public static void main(String[] args) {
+		
+	
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Login frame = new Login();
+						frame.setVisible(true);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
+		
 //		StudentInstance instance = new StudentInstance();
 //		Student student = instance.studentLogin("2018000100001", "123");
 //		System.out.println(student.getName()+" "+student.getDepartment()+"系");
