@@ -1,11 +1,9 @@
 import java.util.List;
-
-import com.sun.corba.se.impl.util.PackagePrefixChecker;
-
 import dsc.ServicesInstance.*;
 import dss.Object.*;
-
+//测试类，用于测试客户端与服务端的连接
 public class Test {
+	
 	public static void main(String[] args) {
 //		StudentInstance instance = new StudentInstance();
 //		Student student = instance.studentLogin("2018000100001", "123");
@@ -30,5 +28,54 @@ public class Test {
 //			System.out.println(i.getPNo());
 //		}
 		
+//		RoomInstance roomInstance = new RoomInstance();
+//		Room add1 = new Room("0018101","01",600,"EE",3,1);
+//		Room toDelete = new Room("0000999","00",1000,"FU",3,1);
+//		roomInstance.addRoom(add1);
+//		roomInstance.addRoom(toDelete);
+//		roomInstance.deleteRoom(toDelete);
+//		add1.setMoney(520);
+//		roomInstance.uploadRoomInfo(add1);
+//		List<Room> rooms = roomInstance.getAllRooms();
+//		for(Room i : rooms) {
+//			System.out.println(i.getNumber()+" "+i.getMoney());
+//		}
+		
+//		AppInstance appInstance = new AppInstance();
+//		Application add1 = new Application(
+//				"2018000002",
+//				3,
+//				"2020-12-17",
+//				"2020-12-17",
+//				6,
+//				500,
+//				500,
+//				"2018000200009",
+//				null,
+//				null,
+//				null
+//			);
+//		Application add2 = new Application(
+//				"2018000099",
+//				3,
+//				"2020-12-17",
+//				"2020-12-17",
+//				6,
+//				500,
+//				500,
+//				"2018000200009",
+//				null,
+//				null,
+//				null
+//			);
+//		appInstance.applyForDor(add1);
+//		appInstance.applyForDor(add2);
+//		appInstance.deleteApplication(add2);
+//		Application current = appInstance.searchApplication("2018000002");
+//		System.out.println("this is "+current.getASNo());
+//		List<Application> apps = appInstance.getAllApplications();
+//		for(Application i : apps) {
+//			System.out.println(i.getANo());
+//		}
 	}
 }

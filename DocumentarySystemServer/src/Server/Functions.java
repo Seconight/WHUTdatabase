@@ -49,6 +49,15 @@ public abstract class Functions implements Serializable{
 		functions.put("UPDATEPACT",new UpdatePact());
 		functions.put("CHECKPACT", new CheckPactStu());
 		functions.put("GETALLPACT",new GetAllPact());
+		functions.put("UPDATEROOM",new UpdateRoom());
+		functions.put("DELETEROOM",new DeleteRoom());
+		functions.put("ADDROOM",new AddRoom());
+		functions.put("GETROOM",new GetRoom());
+		functions.put("GETALLROOMS", new GetAllRooms());
+		functions.put("APPLY",new Apply());
+		functions.put("SEARCHAPP", new SearchApp());
+		functions.put("DELETEAPP", new DeleteApp());
+		functions.put("GETALLAPP", new GetAllApp());
 		
 	}
 	
@@ -246,6 +255,132 @@ class GetAllPact extends Functions{
 		}
 	}
 }
+
+//更新宿舍服务
+class UpdateRoom extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		message.setJudge(roomInstance.uploadRoomInfo(((Room)message.getObject())));
+		System.out.println("UPDATE_ROOM");
+		feedback();
+	}
+	
+}
+
+//删除宿舍服务
+class DeleteRoom extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		message.setJudge(roomInstance.deleteRoom((Room)message.getObject()));
+		System.out.println("DELETE_ROOM");
+		feedback();
+	}
+	
+}
+
+//新增宿舍服务
+class AddRoom extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		message.setJudge(roomInstance.addRoom((Room)message.getObject()));
+		System.out.println("ADD_ROOM");
+		feedback();
+	}
+}
+
+//根据宿舍号获取宿舍
+class GetRoom extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Room result = roomInstance.getRoom((String)message.getObject());
+		message.setObj(result);
+		System.out.println("GET_ROOM");
+		feedback();
+	}
+	
+}
+
+//获取所有宿舍信息
+class GetAllRooms extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		List<Room> result = roomInstance.getAllRooms();
+		message.setObj(result);
+		System.out.println("GET_ALL_ROOMS");
+		feedback();
+	}
+	
+}
+
+//申请(入住、退宿、更改)
+class Apply extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Application current = (Application)message.getObject();
+		try {
+			System.out.println("APPLY");
+			message.setJudge(appInstance.applyForDor(current));
+			feedback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+}
+
+//根据单号查找对应的申请表
+class SearchApp extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Application result = appInstance.searchApplication((String)message.getObject());
+		System.out.println("SEARCH_APP");
+		message.setObj(result);
+		feedback();
+	}
+	
+}
+
+//删除申请表
+class DeleteApp extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		message.setJudge(appInstance.deleteApplication((Application)message.getObject()));
+		System.out.println("DELETE_APP");
+		feedback();
+	}
+	
+}
+
+//获取所有申请表
+class GetAllApp extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		message.setObj(appInstance.getAllApplications());
+		System.out.println("GET_ALL_APP");
+		feedback();
+	}
+	
+}
+
 
 //class Login extends Functions{
 //

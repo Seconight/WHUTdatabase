@@ -74,6 +74,7 @@ public class RoomDAO extends BaseDAO{
 				preparedStatement.setString(4, currentRoom.getDepartment());
 				preparedStatement.setInt(5,currentRoom.getFloor());
 				preparedStatement.setInt(6, currentRoom.getStatus());
+				preparedStatement.executeUpdate();
 				terminate();
 				disconnect();
 				flush();

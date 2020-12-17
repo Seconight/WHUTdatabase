@@ -1,6 +1,7 @@
 package dss.Services;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import dss.Object.*;
 
@@ -20,5 +21,8 @@ public interface AppApplications {
 	
 	//管理员删除申请表
 	public boolean deleteApplication(Application application);
+	
+	//管理员获取所有申请表
+	public List<Application> getAllApplications();
 	
 }

@@ -1,6 +1,9 @@
 package dss.ServicesInstance;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import dss.DAO.ApplicaitonDAO;
 import dss.Object.Application;
@@ -59,6 +62,24 @@ public class AppInstance extends BaseServe implements AppApplications{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public List<Application> getAllApplications() {
+		// TODO Auto-generated method stub
+		List<Application> result = new ArrayList<Application>();
+		ApplicaitonDAO appDao = new ApplicaitonDAO();
+		try {
+			Enumeration<Application> e = appDao.getAll();
+			while (e.hasMoreElements()) {
+				Application application = (Application) e.nextElement();
+				result.add(application);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

@@ -72,7 +72,6 @@ public class ApplicaitonDAO extends BaseDAO{
 				return false;
 			else {
 				connect();
-				
 				preparedStatement = databaseConnection.prepareStatement(
 						"insert into dbo.Application values "
 						+ "(?,?,?,?,?,?,?,?,?,?,?);"
@@ -154,6 +153,7 @@ public class ApplicaitonDAO extends BaseDAO{
 		//根据**查找信息
 		public Application search(String number) throws SQLException {
 			Application result = null;
+			flush();
 			Enumeration<Application> e = getAll();
 			while (e.hasMoreElements()) {
 				Application application = (Application) e.nextElement();
