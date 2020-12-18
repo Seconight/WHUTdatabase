@@ -84,7 +84,7 @@ public class BaseGUI extends JFrame {
 				System.exit(0);// 关闭
 			}
 		});
-		button_shutdown.setBounds(1162, 0, 30, 30);
+		button_shutdown.setBounds(1170, 0, 30, 30);
 		bgp.add(button_shutdown);
 
 		button_minimize.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class BaseGUI extends JFrame {
 				setExtendedState(JFrame.ICONIFIED); // 最小化
 			}
 		});
-		button_minimize.setBounds(1132, 0, 30, 30);
+		button_minimize.setBounds(1140, 0, 30, 30);
 		bgp.add(button_minimize);
 	}
 	//窗口拖拽移动实现

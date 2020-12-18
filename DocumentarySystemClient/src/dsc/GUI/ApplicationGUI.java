@@ -10,19 +10,28 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import dss.Object.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dsc.ServicesInstance.AppInstance;
+import dsc.ServicesInstance.PactInstance;
+import dsc.ServicesInstance.RoomInstance;
+import dsc.ServicesInstance.StudentInstance;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
-public class Application extends JFrame  {
+public class ApplicationGUI extends JFrame  {
 	private static final long serialVersionUID = 1L;
 	Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JPanel contentPane = new JPanel();
@@ -44,49 +53,39 @@ public class Application extends JFrame  {
 	private final JLabel label_8 = new JLabel("\u539F\u623F\u95F4\u53F7");
 	private final JLabel label_9 = new JLabel("\u65B0\u623F\u95F4\u53F7");
 	private final JLabel label_10 = new JLabel("\u4F4F\u5BBF\u53F7");
-	private final JLabel label_11 = new JLabel("8888888888");
-	private final JLabel label_12 = new JLabel("8");
-	private final JLabel label_13 = new JLabel("2020\u5E7410\u670822\u65E5");
-	private final JLabel label_14 = new JLabel("2020\u5E7410\u670822\u65E5");
-	private final JLabel label_15 = new JLabel("22\u6708");
-	private final JLabel label_16 = new JLabel("22222\u5143");
-	private final JLabel label_17 = new JLabel("22222\u5143");
-	private final JLabel label_18 = new JLabel("88888888888888");
-	private final JLabel label_19 = new JLabel("8888888");
-	private final JLabel label_20 = new JLabel("8888888");
-	private final JLabel label_21 = new JLabel("8888888888");
+	private final JLabel label_11 = new JLabel("");
+	private final JLabel label_12 = new JLabel("");
+	private final JLabel label_13 = new JLabel("");
+	private final JLabel label_14 = new JLabel("");
+	private final JLabel label_15 = new JLabel("");
+	private final JLabel label_16 = new JLabel("");
+	private final JLabel label_17 = new JLabel("");
+	private final JLabel label_18 = new JLabel("");
+	private final JLabel label_19 = new JLabel("");
+	private final JLabel label_20 = new JLabel("");
+	private final JLabel label_21 = new JLabel("");
 	private final JLabel label_22 = new JLabel("\u57FA\u672C\u4FE1\u606F\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014");
 	private final JLabel label_23 = new JLabel("\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u57FA\u672C\u4FE1\u606F");
 	private final JLabel label_24 = new JLabel("\u91D1\u989D\u4FE1\u606F\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014");
 	private final JLabel label_25 = new JLabel("\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u91D1\u989D\u4FE1\u606F");
 	private final JPanel panel = new JPanel();
-	private JTextField textField;
-	private JTextField txtn;
+	AppInstance appInstance = new AppInstance();
+	PactInstance pactInstance = new PactInstance();
+	RoomInstance roomInstance = new RoomInstance();
+	StudentInstance studentInstance = new StudentInstance();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Application frame = new Application();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Application() {
+	public ApplicationGUI(dss.Object.Student std,String APPnum,int APPtype,String applyTime,String Stime,int Month,String stdNum,String hetong,String oldR,int oldType,String newR,int newType,int SP,int AP) {
 		setDragable();
 		setUndecorated(true);
 		setBounds((screensize.width - 618) / 2, (screensize.height - 1000) / 2, 618, 1000);
 
-		contentPane.setBorder(new EmptyBorder(5,5,5,5));
+		contentPane.setBorder(new EmptyBorder(0,0,0,0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		panel.setBackground(Color.CYAN);
@@ -99,7 +98,7 @@ public class Application extends JFrame  {
 				System.exit(0);// 关闭
 			}
 		});
-		button_shutdown.setBounds(578, 0, 30, 30);
+		button_shutdown.setBounds(588, 0, 30, 30);
 		panel.add(button_shutdown);
 
 		button_minimize.addActionListener(new ActionListener() {
@@ -107,7 +106,7 @@ public class Application extends JFrame  {
 				setExtendedState(JFrame.ICONIFIED); // 最小化
 			}
 		});
-		button_minimize.setBounds(548, 0, 30, 30);
+		button_minimize.setBounds(558, 0, 30, 30);
 		panel.add(button_minimize);
 		label.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		label.setBounds(0, 0, 80, 40);
@@ -143,53 +142,129 @@ public class Application extends JFrame  {
 		label_10.setBounds(134, 258, 120, 40);
 		label_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_10);
-		label_11.setBounds(84, 0, 210, 40);
+		label_11.setText(APPnum);
+		label_11.setBounds(84, 0, 285, 40);
 		label_11.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_11);
+		label_12.setText(Integer.toString(APPtype));
 		label_12.setBounds(174, 38, 22, 40);
 		label_12.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_12);
+		label_13.setText(applyTime);
 		label_13.setBounds(268, 106, 290, 40);
 		label_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_13);
+		label_14.setText(Stime);
 		label_14.setBounds(268, 147, 290, 40);
 		label_14.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_14);
-		label_15.setBounds(268, 184, 91, 40);
+		label_15.setText(Integer.toString(Month)+"个月");
+		label_15.setBounds(268, 184, 160, 40);
 		label_15.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_15);
-		label_16.setBounds(228, 701, 150, 40);
+		label_16.setText(Integer.toString(SP)+"元");
+		label_16.setBounds(214, 701, 164, 40);
 		label_16.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_16);
-		label_17.setBounds(228, 772, 150, 40);
+		label_17.setText("0元");
+		label_17.setBounds(214, 772, 164, 40);
 		label_17.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_17);
+		label_18.setText(stdNum);
 		label_18.setBounds(268, 222, 294, 40);
 		label_18.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_18);
-		label_19.setBounds(174, 320, 147, 40);
+		label_19.setText(oldR);
+		label_19.setBounds(174, 320, 240, 40);
 		label_19.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_19);
-		label_20.setBounds(174, 459, 147, 40);
+		label_20.setText(newR);
+		label_20.setBounds(174, 459, 240, 40);
 		label_20.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_20);
-		label_21.setBounds(268, 258, 210, 40);
+		label_21.setText(hetong);
+		label_21.setBounds(268, 258, 245, 40);
 		label_21.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_21);
 		
 		JButton button = new JButton("\u70B9\u51FB\u652F\u4ED8");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				label_17.setText(Integer.toString(SP)+"元");
+			}
+		});
 		button.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		//button.setContentAreaFilled(false);
 		button.setBounds(392, 738, 202, 40);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("\u63D0\u4EA4");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(label_17.getText().equals("0元")) {
+					JOptionPane.showMessageDialog(null,  "未支付", "请点击按钮进行支付!",JOptionPane.ERROR_MESSAGE);
+				}
+			else {
+				
+				java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
+				int num1 = ALLpact.size();
+				num1++;
+				int num=num1;
+				String APPnum1= "";
+				int count=0; //计数
+				while(num>=1) {
+				num/=10;
+				count++;
+				}
+				for(int i=0;i<10-count;i++)
+				{
+					APPnum1+="0";
+				}
+				APPnum1+=num1;
+				Application application=new Application(APPnum,APPtype,applyTime,Stime,Month,
+						SP,SP,stdNum,null,newR,null);
+				appInstance.applyForDor(application);
+				Pact currrentPact=new Pact(APPnum, Stime, SP, Month, newR, stdNum);
+				pactInstance.addNewPact(currrentPact);
+				//std.(newR);
+				java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
+				for(int i=0;i<ALLstu.size();i++)
+				{
+					if(ALLstu.get(i).getNubmer().equals(std.getNubmer()))
+					{
+						Student stu1=ALLstu.get(i);
+						
+						stu1.setSroom(newR);
+						std.setSroom(newR);
+						studentInstance.updateStudent(stu1);
+						break;
+					}
+				}
+				java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+				for(int i=0;i<ALLroom.size();i++)
+				{
+					if(ALLroom.get(i).getNumber().equals(newR))
+					{
+						Room room=ALLroom.get(i);
+						room.setStatus(1);
+						roomInstance.uploadRoomInfo(room);
+						break;
+					}
+				}
+				JOptionPane.showMessageDialog(null,  "入住成功", "请返回重新登陆!",JOptionPane.ERROR_MESSAGE);
+				dispose();
+				StudentGUI stuGui=new StudentGUI(std);
+				stuGui.setVisible(true);
+			}
+				
+			}
+		});
 		button_1.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		//button_1.setContentAreaFilled(false);
 		button_1.setBounds(249, 887, 120, 40);
 		panel.add(button_1);
 		label_22.setFont(new Font("华光楷体一_CNKI", Font.ITALIC, 30));
-		label_22.setBounds(0, 76, 598, 30);
+		label_22.setBounds(10, 76, 599, 30);
 		
 		panel.add(label_22);
 		label_23.setFont(new Font("华光楷体一_CNKI", Font.ITALIC, 30));
@@ -205,17 +280,41 @@ public class Application extends JFrame  {
 		
 		panel.add(label_25);
 		
-		textField = new JTextField();
-		textField.setBounds(14, 360, 580, 98);
-		panel.add(textField);
-		textField.setColumns(10);
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		if(oldType==1)
+		{
+			textArea.setText(Constants.R1INTRO);
+		}
+		if(oldType==2)
+		{
+			textArea.setText(Constants.R2INTRO);
+		}
+		if(oldType==3)
+		{
+			textArea.setText(Constants.R3INTRO);
+		}
+		textArea.setBounds(14, 358, 590, 98);
+		panel.add(textArea);
 		
-		txtn = new JTextField();
-		txtn.setText("\u5BBF\u820D\u91C7\u5149\u826F\u597D\uFF0C\u51AC\u6696\u590F\u51C9\uFF0C\u914D\u5907\u6709\u7A7A\u8C03\\n\u6D17\u8863\u673A\u7B49\u5148\u8FDB\u5BB6\u7535");
-		txtn.setFont(new Font("微软雅黑", Font.PLAIN, 30));
-		txtn.setColumns(10);
-		txtn.setBounds(14, 502, 580, 98);
-		panel.add(txtn);
+		JTextArea textArea_1 = new JTextArea();
+		textArea.setEditable(false);
+		textArea_1.setEditable(false);
+		textArea_1.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		if(newType==1)
+		{
+			textArea_1.setText(Constants.R1INTRO);
+		}
+		if(newType==2)
+		{
+			textArea_1.setText(Constants.R2INTRO);
+		}
+		if(newType==3)
+		{
+			textArea_1.setText(Constants.R3INTRO);
+		}
+		textArea_1.setBounds(14, 497, 590, 98);
+		panel.add(textArea_1);
 		
 	
 	}

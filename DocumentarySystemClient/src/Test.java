@@ -10,20 +10,20 @@ public class Test {
 	public static void main(String[] args) {
 		
 	
-//			EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						Login frame = new Login();
-//						frame.setVisible(true);
-//						
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Login frame = new Login();
+						frame.setVisible(true);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		
 		
-		StudentInstance instance = new StudentInstance();
+//		StudentInstance instance = new StudentInstance();
 		
 		
 		
@@ -34,10 +34,10 @@ public class Test {
 //			System.out.println(i.getName() + i.getNubmer());
 //		}
 //		instance.changePassword("2018000100002", "321","wy");
-		Student add = new Student("2018000200009",22,"≤∑¿÷Ê√","PP",0,"321",null);
-		if(instance.updateStudent(add)) System.out.println("hh");
-		Student add2 = new Student("2018000200010",22,"≤∑¿÷Ê√","PP",0,"123",null);
-		if(!instance.updateStudent(add2)) System.out.println("jj");
+//		Student add = new Student("2018000200009",22,"≤∑¿÷Ê√","PP",0,"321",null);
+//		if(instance.updateStudent(add)) System.out.println("hh");
+//		Student add2 = new Student("2018000200010",22,"≤∑¿÷Ê√","PP",0,"123",null);
+//		if(!instance.updateStudent(add2)) System.out.println("jj");
 //		instance.studentRegister(add);
 		
 //		PactInstance instance = new PactInstance();
