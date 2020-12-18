@@ -49,7 +49,6 @@ public class RoomInstance extends BaseServe implements RoomApplications{
 	@Override
 	public boolean deleteRoom(Room currentRoom) {
 		// TODO Auto-generated method stub
-		
 		try {
 			RoomDAO roomDAO = new RoomDAO();
 			if(roomDAO.delete(currentRoom))
@@ -58,7 +57,6 @@ public class RoomInstance extends BaseServe implements RoomApplications{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 

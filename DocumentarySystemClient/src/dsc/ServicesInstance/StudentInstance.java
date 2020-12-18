@@ -54,4 +54,14 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 		return (Student)message.getObject();
 	}
 
+	@Override
+	public boolean updateStudent(Student currentStudent) {
+		// TODO Auto-generated method stub
+		Message message = new Message();
+		message.setFunction("UPDATESTU");
+		message.setObj(currentStudent);
+		message = communicate(message);
+		return message.getJudge();
+	}
+
 }

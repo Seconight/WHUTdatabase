@@ -44,6 +44,7 @@ public abstract class Functions implements Serializable{
 		functions.put("CHANGEPASSWORD", new ChangePassword());
 		functions.put("GETALLSTU",new GetStudentInfo());
 		functions.put("REGISTER",new Register());
+		functions.put("UPDATESTU",new UpdateStu());
 		functions.put("ADDPACT",new AddPact());
 		functions.put("DELETEPACT",new DeletePact());
 		functions.put("UPDATEPACT",new UpdatePact());
@@ -167,6 +168,20 @@ class Register extends Functions{
 		message.setObj(studentInstance.studentRegister(addNew));
 		feedback();
 	}
+}
+
+//更改学生信息
+class UpdateStu extends Functions{
+
+	@Override
+	public void function() {
+		// TODO Auto-generated method stub
+		Student current = (Student)message.getObject();
+		System.out.println("UPDATESTUDENT");
+		message.setJudge(studentInstance.updateStudent(current));
+		feedback();
+	}
+	
 }
 
 //新增合同服务

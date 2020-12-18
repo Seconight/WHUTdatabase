@@ -11,6 +11,9 @@ public interface StudentApplications {
 	//学生更改密码
 	public Student changePassword(String id,String uPassword,String newPassword);
 	
+	//更改学生信息
+	public boolean updateStudent(Student currentStudent);
+	
 	//管理员获取全部学生信息
 	public List<Student> getStudentsInfo();
 	

@@ -95,4 +95,21 @@ public class StudentInstance extends BaseServe implements StudentApplications{
 		return result;
 	}
 
+	
+	@Override
+	public boolean updateStudent(Student currentStudent) {
+		// TODO Auto-generated method stub
+		
+		try {
+			StudentDAO studentDAO = new StudentDAO();
+			if(studentDAO.update(currentStudent)) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }

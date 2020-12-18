@@ -24,7 +24,7 @@ public class StudentDAO extends BaseDAO{
 	}
 	
 	
-	//用于保存表项信息，键为姓名，值为学生对象
+	//用于保存表项信息，键为学号，值为学生对象
 	public Hashtable<String ,Student> studentTable = new Hashtable<String, Student>();
 	
 	
@@ -53,7 +53,7 @@ public class StudentDAO extends BaseDAO{
 			String password = resultSet.getString("SPassword");
 			String room = resultSet.getString("SRoom");
 			Student student = new Student(number,age,name,department,sex,password,room);
-			studentTable.put(name, student);
+			studentTable.put(number, student);
 		}
 		//关闭相关组件连接
 		terminate();
@@ -63,7 +63,7 @@ public class StudentDAO extends BaseDAO{
 	//插入数据
 	public boolean insert(Student currentStudent) throws SQLException{
 		
-		if(studentTable.contains(currentStudent.getName()))
+		if(studentTable.contains(currentStudent.getNubmer()))
 			return false;
 		else {
 			connect();
@@ -92,7 +92,7 @@ public class StudentDAO extends BaseDAO{
 	
 	//更新数据
 	public boolean update(Student currentStudent) throws SQLException{
-		if(!studentTable.containsKey(currentStudent.getName()))
+		if(!studentTable.containsKey(currentStudent.getNubmer()))
 			return false;
 		else {
 			connect();
@@ -118,7 +118,7 @@ public class StudentDAO extends BaseDAO{
 	
 	//删除数据
 	public boolean delete(Student currentStudent) throws SQLException{
-		if(!studentTable.containsKey(currentStudent.getName()))
+		if(!studentTable.containsKey(currentStudent.getNubmer()))
 			return false;
 		else {
 			connect();
