@@ -10,17 +10,17 @@ public class Test {
 	public static void main(String[] args) {
 		
 	
-//			EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						Login frame = new Login();
-//						frame.setVisible(true);
-//						
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						Login frame = new Login();
+						frame.setVisible(true);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		
 		
 //		StudentInstance instance = new StudentInstance();
@@ -40,13 +40,13 @@ public class Test {
 //		if(!instance.updateStudent(add2)) System.out.println("jj");
 //		instance.studentRegister(add);
 		
-		PactInstance instance = new PactInstance();
-		Pact cuuPact2 = new Pact("2018000112","2020-12-02",500,5,"0018002","2018000200009");
+//		PactInstance instance = new PactInstance();
+//		Pact cuuPact2 = new Pact("2018000112","2020-12-02",500,5,"0018002","2018000200009");
 //		Pact delete = new Pact(); delete.setPNo("2018000000");
 //		instance.addNewPact(cuuPact2);
 //		instance.deletePact(delete);
 //		cuuPact2.setPMoney(520);
-		instance.uploadPact(cuuPact2);
+//		instance.uploadPact(cuuPact2);
 //		List<Pact> pacts = instance.getAllPacts();
 //		for(Pact i : pacts) {
 //			System.out.println(i.getPNo());
