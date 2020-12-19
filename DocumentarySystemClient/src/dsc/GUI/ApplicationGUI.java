@@ -73,6 +73,7 @@ public class ApplicationGUI extends JFrame  {
 	PactInstance pactInstance = new PactInstance();
 	RoomInstance roomInstance = new RoomInstance();
 	StudentInstance studentInstance = new StudentInstance();
+	JButton button = new JButton("\u70B9\u51FB\u652F\u4ED8");
 	/**
 	 * Launch the application.
 	 */
@@ -84,7 +85,20 @@ public class ApplicationGUI extends JFrame  {
 		setDragable();
 		setUndecorated(true);
 		setBounds((screensize.width - 618) / 2, (screensize.height - 1000) / 2, 618, 1000);
-
+			if(APPtype>0)
+		  {
+			button.setText("\u70B9\u51FB\u652F\u4ED8");
+		  }
+			if(SP==0)
+			{
+				button.setText("点击付款");
+				button.setEnabled(false);
+			}
+			if(SP<0)
+			{
+				button.setText("点击收款");
+			}
+	
 		contentPane.setBorder(new EmptyBorder(0,0,0,0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -187,10 +201,17 @@ public class ApplicationGUI extends JFrame  {
 		label_21.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_21);
 		
-		JButton button = new JButton("\u70B9\u51FB\u652F\u4ED8");
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				label_17.setText(Integer.toString(SP)+"元");
+				if(SP<0)
+				{
+					JOptionPane.showMessageDialog(null, "返还金额："+(-SP)+"元", "", JOptionPane.OK_OPTION);
+				}
+				else if(SP>0){
+					JOptionPane.showMessageDialog(null, "支付金额："+SP+"元", "", JOptionPane.OK_OPTION);
+				}
 			}
 		});
 		button.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -201,46 +222,116 @@ public class ApplicationGUI extends JFrame  {
 		JButton button_1 = new JButton("\u63D0\u4EA4");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(label_17.getText().equals("0元")) {
-					JOptionPane.showMessageDialog(null,  "未支付", "请点击按钮进行支付!",JOptionPane.ERROR_MESSAGE);
+				if(!label_17.getText().equals(label_16.getText())) {
+					JOptionPane.showMessageDialog(null, "请点击按钮进行金额处理!", "未处理金额信息", JOptionPane.ERROR_MESSAGE);
 				}
 			else {
-				
-				java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
-				int num1 = ALLpact.size();
-				num1++;
-				int num=num1;
-				String APPnum1= "";
-				int count=0; //计数
-				while(num>=1) {
-				num/=10;
-				count++;
-				}
-				for(int i=0;i<10-count;i++)
+				if(APPtype==1)
 				{
-					APPnum1+="0";
+					java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
+					int num1 = ALLpact.size();
+					num1++;
+					int num=num1;
+					String APPnum1= "";
+					int count=0; //计数
+					while(num>=1) {
+					num/=10;
+					count++;
+					}
+					for(int i=0;i<10-count;i++)
+					{
+						APPnum1+="0";
+					}
+					APPnum1+=num1;
+					Application application=new Application(APPnum,APPtype,applyTime,Stime,Month,
+							SP,SP,stdNum,null,newR,null);
+					appInstance.applyForDor(application);
+					Pact currrentPact=new Pact(APPnum, Stime, SP, Month, newR, stdNum);
+					pactInstance.addNewPact(currrentPact);
+					//std.(newR);
+					java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
+					for(int i=0;i<ALLstu.size();i++)
+					{
+						if(ALLstu.get(i).getNubmer().equals(std.getNubmer()))
+						{
+							Student stu1=ALLstu.get(i);
+							
+							stu1.setSroom(newR);
+							std.setSroom(newR);
+							studentInstance.updateStudent(stu1);
+							break;
+						}
+					}
+					java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+					for(int i=0;i<ALLroom.size();i++)
+					{
+						if(ALLroom.get(i).getNumber().equals(newR))
+						{
+							Room room=ALLroom.get(i);
+							room.setStatus(1);
+							roomInstance.uploadRoomInfo(room);
+							break;
+						}
+					}
+					JOptionPane.showMessageDialog(null,   "入住成功！","",JOptionPane.OK_OPTION);
 				}
-				APPnum1+=num1;
+			if(APPtype==2)
+			{//退租
 				Application application=new Application(APPnum,APPtype,applyTime,Stime,Month,
-						SP,SP,stdNum,null,newR,null);
+						SP,SP,stdNum,oldR,null,hetong);
 				appInstance.applyForDor(application);
-				Pact currrentPact=new Pact(APPnum, Stime, SP, Month, newR, stdNum);
-				pactInstance.addNewPact(currrentPact);
-				//std.(newR);
+				java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+				for(int i=0;i<ALLroom.size();i++)
+				{
+					if(ALLroom.get(i).getNumber().equals(oldR))
+					{
+						Room room=ALLroom.get(i);
+						room.setStatus(0);
+						roomInstance.uploadRoomInfo(room);
+						break;
+					}
+				}
+				java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
+				for(int i=0;i<ALLpact.size();i++)
+				{
+					if(ALLpact.get(i).getPNo().equals(hetong))
+					{
+						Pact pact=ALLpact.get(i);
+						pact.setPMoney(0);
+						pact.setPTime(Month);
+						pactInstance.uploadPact(pact);
+						break;
+					}
+				}
 				java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
 				for(int i=0;i<ALLstu.size();i++)
 				{
 					if(ALLstu.get(i).getNubmer().equals(std.getNubmer()))
 					{
 						Student stu1=ALLstu.get(i);
-						
-						stu1.setSroom(newR);
-						std.setSroom(newR);
+						stu1.setSroom(null);
+						std.setSroom(null);
 						studentInstance.updateStudent(stu1);
 						break;
 					}
 				}
+			}
+			if(APPtype==3)
+			{//更换
+				Application application=new Application(APPnum,APPtype,applyTime,Stime,Month,
+						SP,SP,stdNum,oldR,newR,hetong);
+				appInstance.applyForDor(application);
 				java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+				for(int i=0;i<ALLroom.size();i++)
+				{
+					if(ALLroom.get(i).getNumber().equals(oldR))
+					{
+						Room room=ALLroom.get(i);
+						room.setStatus(0);
+						roomInstance.uploadRoomInfo(room);
+						break;
+					}
+				}
 				for(int i=0;i<ALLroom.size();i++)
 				{
 					if(ALLroom.get(i).getNumber().equals(newR))
@@ -251,7 +342,32 @@ public class ApplicationGUI extends JFrame  {
 						break;
 					}
 				}
-				JOptionPane.showMessageDialog(null,  "入住成功", "请返回重新登陆!",JOptionPane.ERROR_MESSAGE);
+				java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
+				for(int i=0;i<ALLpact.size();i++)
+				{
+					if(ALLpact.get(i).getPNo().equals(hetong))
+					{
+						Pact pact=ALLpact.get(i);
+						pact.setPMoney(pact.getPMoney()+SP);
+						pact.setPTime(Month);
+						pact.setPRNo(newR);
+						pactInstance.uploadPact(pact);
+						break;
+					}
+				}
+				java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
+				for(int i=0;i<ALLstu.size();i++)
+				{
+					if(ALLstu.get(i).getNubmer().equals(std.getNubmer()))
+					{
+						Student stu1=ALLstu.get(i);
+						stu1.setSroom(newR);
+						std.setSroom(newR);
+						studentInstance.updateStudent(stu1);
+						break;
+					}
+				}
+			}
 				dispose();
 				StudentGUI stuGui=new StudentGUI(std);
 				stuGui.setVisible(true);

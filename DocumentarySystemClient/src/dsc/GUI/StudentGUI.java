@@ -35,6 +35,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -45,6 +46,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 public class StudentGUI extends BaseGUI {
 	
@@ -59,7 +61,7 @@ public class StudentGUI extends BaseGUI {
 	JLabel label_1 = new JLabel("\u7530\u5BB6\u5174");//田家兴
 	JLabel label = new JLabel("\u59D3\u540D\uFF1A");//姓名：
 	JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	
+	JCheckBox checkBox = new JCheckBox("\u66F4\u6362\u7ED3\u675F\u65F6\u95F4");
 	JPanel panel = new JPanel();//入住选项卡
 	JPanel panel_1 = new JPanel();//退租选项卡
 	JPanel panel_2 = new JPanel(); //更换房间选项卡
@@ -79,29 +81,13 @@ public class StudentGUI extends BaseGUI {
 	JLabel label_11 = new JLabel("\u9009\u62E9\u5F00\u59CB\u65F6\u95F4");//选择开始时间
 	JLabel label_12 = new JLabel("\u9009\u62E9\u7ED3\u675F\u65F6\u95F4");//选择结束时间
 	JButton btnNewButton = new JButton("\u751F\u6210\u7533\u8BF7\u8868");//生成申请表按钮
-	JButton btnNewButton_1 = new JButton("\u751F\u6210\u7533\u8BF7\u8868");
+	JButton btnNewButton_1 = new JButton("\u70B9\u51FB\u9000\u79DF");
 	JButton btnNewButton_2 = new JButton("\u751F\u6210\u7533\u8BF7\u8868");
 	JLabel label_14 = new JLabel("\u786E\u8BA4\u5BC6\u7801");//退租确认密码
 	JLabel label_15 = new JLabel("\u623F\u95F4\u9009\u62E9");//更换房间的房间选择
-	JTable table_1 = new JTable();
 	JMenuBar menuBar_1 = new JMenuBar();
-	JMenu mnNewMenu_4 = new JMenu("\u9662\u7CFB\u9009\u62E9");//更换界面院系选择
-	JMenu mnNewMenu_5 = new JMenu("\u7A7A\u4F59\u623F\u95F4");//更换界面空余房间选择
 	JMenu mnNewMenu_6 = new JMenu("\u697C\u680B\u9009\u62E9");//更换界面楼栋选择
 	JMenu mnNewMenu_7 = new JMenu("\u6708\u79DF\u91D1");//更换界面月租金
-	JCheckBoxMenuItem chckbxmntmNewCheckItem_19 = new JCheckBoxMenuItem("\u7ECF\u6D4E");//更换界面经济
-	JCheckBoxMenuItem chckbxmntmNewCheckItem_20 = new JCheckBoxMenuItem("\u7BA1\u7406");//更换界面管理
-	JCheckBoxMenuItem checkBoxMenuItem_4 = new JCheckBoxMenuItem("\u80FD\u52A8");//更换界面能动
-	JCheckBoxMenuItem checkBoxMenuItem_5 = new JCheckBoxMenuItem("航海");//更换界面航海
-	JCheckBoxMenuItem checkBoxMenuItem_6 = new JCheckBoxMenuItem("机设");//更换机设
-	JCheckBoxMenuItem checkBoxMenuItem_7 = new JCheckBoxMenuItem("外国语");//更换界面外国语
-	JCheckBoxMenuItem checkBoxMenuItem_8 = new JCheckBoxMenuItem("马克思主义");//更换界面马克思主义
-	JCheckBoxMenuItem checkBoxMenuItem_9 = new JCheckBoxMenuItem("计算机科学与技术");//更换界面计算机科学与技术
-	JCheckBoxMenuItem checkBoxMenuItem_10 = new JCheckBoxMenuItem("化生");//更换界面化生
-	JCheckBoxMenuItem checkBoxMenuItem_11 = new JCheckBoxMenuItem("物流");//更换界面物流
-	JCheckBoxMenuItem checkBoxMenuItem_12 = new JCheckBoxMenuItem("所有院系");//更换界面所有院系
-	JCheckBoxMenuItem checkBoxMenuItem_13 = new JCheckBoxMenuItem("空余房间");//更换界面空余房间
-	JCheckBoxMenuItem checkBoxMenuItem_14 = new JCheckBoxMenuItem("所有房间");//更换界面所有房间
 	JCheckBoxMenuItem checkBoxMenuItem_15 = new JCheckBoxMenuItem("1栋");//更换界面1栋
 	JCheckBoxMenuItem checkBoxMenuItem_16 = new JCheckBoxMenuItem("2栋");//更换界面2栋
 	JCheckBoxMenuItem checkBoxMenuItem_17 = new JCheckBoxMenuItem("3栋");//更换界面3栋
@@ -110,22 +96,17 @@ public class StudentGUI extends BaseGUI {
 	JCheckBoxMenuItem checkBoxMenuItem_20 = new JCheckBoxMenuItem("所有楼栋");//更换界面所有楼栋
 	JCheckBoxMenuItem chckbxmntmNewCheckItem_21 = new JCheckBoxMenuItem("200/月");//更换界面200/月
 	JCheckBoxMenuItem checkBoxMenuItem_21 = new JCheckBoxMenuItem("300/月");//更换界面300/月
-	JCheckBoxMenuItem checkBoxMenuItem_22 = new JCheckBoxMenuItem("400/月");//更换界面400/月
+	JCheckBoxMenuItem checkBoxMenuItem_22 = new JCheckBoxMenuItem("500/月");//更换界面400/月
 	JCheckBoxMenuItem checkBoxMenuItem_23 = new JCheckBoxMenuItem("所有月租");//更换界面所有月租
-	private JTextField textField_5;
 	private JTextField textField_6;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private final JTextField textField_13 = new JTextField();
-	private final JLabel label_29 = new JLabel("\u65E5");
-	private final JLabel label_30 = new JLabel("\u65E5");
-	private final JTextField textField_14 = new JTextField();
-	private JPasswordField passwordField;
+	private JTextField passwordField;
 	private JTable table;
 	JScrollPane scrollPane;
+	JScrollPane scrollPane_1;
 	String[] month= {"3","9"};
 	JComboBox comboBox = new JComboBox(month);
 	JComboBox comboBox_1 = new JComboBox(month);
+	JComboBox comboBox_2 = new JComboBox(month);
 	/**
 	 * Launch the application.
 	 */
@@ -275,9 +256,7 @@ public class StudentGUI extends BaseGUI {
 		label_9.setBounds(761, 56, 272, 30);
 		bgp.add(label_9);
 		tabbedPane.setBackground(Color.WHITE);
-
-
-		
+	
 		tabbedPane.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
 		tabbedPane.setBounds(0, 92, 1202, 651);
 		bgp.add(tabbedPane);
@@ -285,12 +264,10 @@ public class StudentGUI extends BaseGUI {
 		
 		panel.setLayout(null);
 		tabbedPane.addTab("入住", null, panel, null);
-	
 		
 		label_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		label_10.setBounds(5, 0, 160, 50);
 		panel.add(label_10);
-		
 
 		menuBar.setOpaque(false);
 		menuBar.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -363,7 +340,7 @@ public class StudentGUI extends BaseGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				if(table.getSelectedRow()==-1)
 				{
-					JOptionPane.showMessageDialog(null,  "未选择房间", "请选择房间！",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,   "请选择房间！","未选择房间",JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					Calendar now = Calendar.getInstance();
@@ -418,7 +395,7 @@ public class StudentGUI extends BaseGUI {
 							app.setVisible(true);
 						}
 						else {
-							JOptionPane.showMessageDialog(null,  "输入信息错误", "请重新选择时间！",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,  "请重新选择时间！", "输入信息错误",JOptionPane.ERROR_MESSAGE);
 							textField.setText("");
 							textField_1.setText("");
 						}
@@ -483,30 +460,65 @@ public class StudentGUI extends BaseGUI {
 		tabbedPane.addTab("退租", null, panel_1, null);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String pwd=passwordField.getPassword().toString();
-				java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
-				for(int i=0;i<ALLstu.size();i++)
+				String pwd=passwordField.getText().toString();
+				if(pwd.equals(std.getPassword()))
 				{
-					if(ALLstu.get(i).getNubmer().equals(std.getNubmer()))
-					{
-						Student stu1=ALLstu.get(i);
-						
-						stu1.setSroom(null);
-						std.setSroom(null);
-						studentInstance.updateStudent(stu1);
-						break;
+					Calendar now = Calendar.getInstance();
+					int cuY=now.get(Calendar.YEAR);
+					int cuM=now.get(Calendar.MONTH)+1;
+					int cuD=cuY*12+cuM;
+					String str=pactInstance.checkStuPact(std).getPSTime();
+					String []str1=str.split("-");
+					int oldY=Integer.parseInt(str1[0]);
+					int oldM=Integer.parseInt(str1[1]);
+					int newTime=cuY*12+cuM-(oldY*12+oldM);
+					int SP=0;
+					java.util.List<Application> ALLapp=appInstance.getAllApplications();
+					int num1 = ALLapp.size();
+					num1++;
+					int num=num1;
+					String APPnum= "";
+					int count=0; //计数
+					while(num>=1) {
+					num/=10;
+					count++;
 					}
+					for(int i=0;i<10-count;i++)
+					{
+						APPnum+="0";
+					}
+					APPnum+=num1;
+					Date day=new Date();    
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					int oldtype=0;
+					java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+					for(int i=0;i<ALLroom.size();i++)
+					{
+						if(ALLroom.get(i).getNumber().equals(std.getSroom()))
+						{
+							oldtype=Integer.parseInt(ALLroom.get(i).getType().substring(1));
+							break;
+						}
+					}
+					if(oldtype==1)
+					{
+						SP=newTime-pactInstance.checkStuPact(std).getPTime()*500;
+					}
+					if(oldtype==2)
+					{
+						SP=newTime-pactInstance.checkStuPact(std).getPTime()*300;
+					}
+					if(oldtype==3)
+					{
+						SP=newTime-pactInstance.checkStuPact(std).getPTime()*200;
+					}
+					dispose();
+					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), newTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
+					appGUI.setVisible(true);
 				}
-				java.util.List<Room> ALLroom=roomInstance.getAllRooms();
-				for(int i=0;i<ALLroom.size();i++)
+				else
 				{
-					if(ALLroom.get(i).getNumber().equals(std.getSroom()))
-					{
-						Room room=ALLroom.get(i);
-						room.setStatus(0);
-						roomInstance.uploadRoomInfo(room);
-						break;
-					}
+					JOptionPane.showMessageDialog(null,  "请重新输入密码！", "输入密码错误",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -521,6 +533,7 @@ public class StudentGUI extends BaseGUI {
 		panel_1.add(label_14);
 		
 		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
 		passwordField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		passwordField.setBounds(535, 141, 300, 50);
 		panel_1.add(passwordField);
@@ -533,8 +546,157 @@ public class StudentGUI extends BaseGUI {
 		
 		panel_2.setLayout(null);
 		tabbedPane.addTab("更换房间", null, panel_2, null);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			if(checkBox.isSelected())
+			{
+				int NYear=Integer.parseInt(textField_6.getText());
+				int NMonth=Integer.parseInt((String)comboBox_2.getSelectedItem());
+				String OStime=pactInstance.checkStuPact(std).getPSTime();
+				int OTime=pactInstance.checkStuPact(std).getPTime();
+				String[] str=OStime.split("-");
+				int OYear=Integer.parseInt(str[0]);
+				int OMonth=Integer.parseInt(str[1]);
+				int NTime=NYear*12+NMonth-(OYear*12+OMonth);
+				if(textField_6.getText().equals("")||(!(NTime<=12&&NTime>=6))||NTime==OTime)
+				{
+					JOptionPane.showMessageDialog(null,   "请重新选择结束时间或者取消更换时间！","时间错误",JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					
+					java.util.List<Application> ALLapp=appInstance.getAllApplications();
+					int num1 = ALLapp.size();
+					num1++;
+					int num=num1;
+					String APPnum= "";
+					int count=0; //计数
+					while(num>=1) {
+					num/=10;
+					count++;
+					}
+					for(int i=0;i<10-count;i++)
+					{
+						APPnum+="0";
+					}
+					APPnum+=num1;
+					Date day=new Date();    
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");	
+					int AP=0,SP=0;
+					float ap=0,sp=0;
+					if(NTime<OTime)
+					{
+						ap=-pactInstance.checkStuPact(std).getPMoney();
+					}
+					else {
+						ap=2*pactInstance.checkStuPact(std).getPMoney();
+					}
+					String st=String.valueOf(ap);
+					String [] sr=st.split("\\.");
+					AP=Integer.parseInt(sr[0]);
+					int oldtype=0;
+					java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+					for(int i=0;i<ALLroom.size();i++)
+					{
+						if(ALLroom.get(i).getNumber().equals(std.getSroom()))
+						{
+							oldtype=Integer.parseInt(ALLroom.get(i).getType().substring(1));
+							break;
+						}
+					}
+					dispose();
+					if(table.getSelectedRow()==-1)
+					{//没有选择房间只更换时间
+					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), NTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
+					appGUI.setVisible(true);
+					}
+					else {
+						//更换房间和时间
+						int row=table.getSelectedRow();
+						String NType=(String)table.getValueAt(row, 1);
+						String NRoomNum=(String)table.getValueAt(row, 0);
+						int type=Integer.parseInt(NType.substring(1));
+						float newmoney=0;
+						if(type==1)
+						{
+							newmoney=NTime*500;
+						}
+						if(type==2) {
+							newmoney=NTime*300;
+						}
+						if(type==3) {
+							newmoney=NTime*200;
+						}
+						float oldmoney=newmoney-pactInstance.checkStuPact(std).getPMoney();
+						String str1=String.valueOf(oldmoney);
+						String []str2=str1.split("\\.");
+						int Ap=Integer.parseInt(str2[0]);
+						ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), NTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, NRoomNum, type,Ap , 0);
+						appGUI.setVisible(true);
+					}
+				}
+				
+			}
+			else {//不更改时间
+				if(table.getSelectedRow()==-1)
+				{
+					JOptionPane.showMessageDialog(null,   "请选择房间！","未选择房间",JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					//进行房间更换
+					java.util.List<Application> ALLapp=appInstance.getAllApplications();
+					int num1 = ALLapp.size();
+					num1++;
+					int num=num1;
+					String APPnum= "";
+					int count=0; //计数
+					while(num>=1) {
+					num/=10;
+					count++;
+					}
+					for(int i=0;i<10-count;i++)
+					{
+						APPnum+="0";
+					}
+					APPnum+=num1;
+					int row=table.getSelectedRow();
+					String NType=(String)table.getValueAt(row, 1);
+					String NRoomNum=(String)table.getValueAt(row, 0);
+					int type=Integer.parseInt(NType.substring(1));
+					int newmoney=0;
+					if(type==1)
+					{
+						newmoney=pactInstance.checkStuPact(std).getPTime()*500;
+					}
+					if(type==2) {
+						newmoney=pactInstance.checkStuPact(std).getPTime()*300;
+					}
+					if(type==3) {
+						newmoney=pactInstance.checkStuPact(std).getPTime()*200;
+					}
+					java.util.List<Room> ALLroom=roomInstance.getAllRooms();
+					int oldtype=0;
+					for(int i=0;i<ALLroom.size();i++)
+					{
+						if(ALLroom.get(i).getNumber().equals(std.getSroom()))
+						{
+							oldtype=Integer.parseInt(ALLroom.get(i).getType().substring(1));
+							break;
+						}
+					}
+					String m=Float.toString(newmoney-pactInstance.checkStuPact(std).getPMoney());
+					String [] n=m.split("\\.");
+					int SP=Integer.parseInt(n[0]);
+					Date day=new Date();    
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					dispose();
+					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), pactInstance.checkStuPact(std).getPTime(), std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, NRoomNum, type, SP, 0);
+					appGUI.setVisible(true);
+				}
+			}
+			}
+		});
 		btnNewButton_2.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		btnNewButton_2.setBounds(481, 534, 240, 50);
+		btnNewButton_2.setBounds(481, 527, 240, 50);
 		
 		panel_2.add(btnNewButton_2);
 		label_15.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -542,58 +704,9 @@ public class StudentGUI extends BaseGUI {
 		panel_2.add(label_15);
 		
 		panel_2.add(label_15);
-		table_1.setBounds(0, 49, 1170, 407);
-		panel_2.add(table_1);
-		menuBar_1.setBounds(540, 0, 650, 50);
+		menuBar_1.setBounds(895, 0, 650, 43);
 		menuBar_1.setOpaque(false);
 		panel_2.add(menuBar_1);
-		mnNewMenu_4.setForeground(Color.MAGENTA);
-		mnNewMenu_4.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		
-		menuBar_1.add(mnNewMenu_4);
-		chckbxmntmNewCheckItem_19.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(chckbxmntmNewCheckItem_19);
-		chckbxmntmNewCheckItem_20.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(chckbxmntmNewCheckItem_20);
-		checkBoxMenuItem_4.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_4);
-		checkBoxMenuItem_5.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_5);
-		checkBoxMenuItem_6.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_6);
-		checkBoxMenuItem_7.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_7);
-		checkBoxMenuItem_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_8);
-		checkBoxMenuItem_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_9);
-		checkBoxMenuItem_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_10);
-		checkBoxMenuItem_11.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_11);
-		checkBoxMenuItem_12.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_4.add(checkBoxMenuItem_12);
-		mnNewMenu_5.setForeground(Color.MAGENTA);
-		mnNewMenu_5.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		
-		menuBar_1.add(mnNewMenu_5);
-		checkBoxMenuItem_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_5.add(checkBoxMenuItem_13);
-		checkBoxMenuItem_14.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 35));
-		
-		mnNewMenu_5.add(checkBoxMenuItem_14);
 		mnNewMenu_6.setForeground(Color.MAGENTA);
 		mnNewMenu_6.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		
@@ -633,83 +746,35 @@ public class StudentGUI extends BaseGUI {
 		
 		mnNewMenu_7.add(checkBoxMenuItem_23);
 		
-		JLabel label_16 = new JLabel("\u5F53\u524D\u7ED3\u675F\u65F6\u95F4");
-		label_16.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_16.setBounds(5, 464, 240, 50);
-		panel_2.add(label_16);
-		
-		JLabel label_17 = new JLabel("\u66F4\u6362\u7ED3\u675F\u65F6\u95F4");
-		label_17.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_17.setBounds(625, 464, 240, 50);
-		panel_2.add(label_17);
-		
-		textField_5 = new JTextField();
-		textField_5.setText("2020");
-		textField_5.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_5.setColumns(10);
-		textField_5.setBounds(259, 464, 90, 50);
-		panel_2.add(textField_5);
-		
 		textField_6 = new JTextField();
-		textField_6.setText("2020");
 		textField_6.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		textField_6.setColumns(10);
-		textField_6.setBounds(879, 464, 90, 50);
+		textField_6.setBounds(519, 464, 90, 50);
 		panel_2.add(textField_6);
-		
-		JLabel label_23 = new JLabel("\u5E74");
-		label_23.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_23.setBounds(349, 464, 40, 50);
-		panel_2.add(label_23);
-		
-		textField_9 = new JTextField();
-		textField_9.setText("10");
-		textField_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_9.setColumns(10);
-		textField_9.setBounds(390, 464, 40, 50);
-		panel_2.add(textField_9);
-		
-		JLabel label_24 = new JLabel("\u6708");
-		label_24.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_24.setBounds(430, 464, 40, 50);
-		panel_2.add(label_24);
 		
 		JLabel label_25 = new JLabel("\u5E74");
 		label_25.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_25.setBounds(969, 464, 40, 50);
+		label_25.setBounds(610, 464, 40, 50);
 		panel_2.add(label_25);
 		
-		textField_10 = new JTextField();
-		textField_10.setText("10");
-		textField_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_10.setColumns(10);
-		textField_10.setBounds(1008, 464, 40, 50);
-		panel_2.add(textField_10);
-		
-		JLabel label_26 = new JLabel("\u6708");
+		JLabel label_26 = new JLabel("\u67081\u65E5");
 		label_26.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_26.setBounds(1048, 464, 40, 50);
+		label_26.setBounds(700, 464, 94, 50);
 		panel_2.add(label_26);
-		textField_13.setText("22");
-		textField_13.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_13.setColumns(10);
-		textField_13.setBounds(470, 464, 48, 50);
 		
-		panel_2.add(textField_13);
-		label_29.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_29.setBounds(518, 464, 40, 50);
+		JScrollPane scrollPane_1 = new JScrollPane(table);
+		scrollPane_1.setBounds(0, 41, 1197, 418);
+		panel_2.add(scrollPane_1);
 		
-		panel_2.add(label_29);
-		label_30.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_30.setBounds(1130, 464, 40, 50);
+
+		comboBox_2.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		comboBox_2.setBounds(653, 464, 46, 50);
+		panel_2.add(comboBox_2);
 		
-		panel_2.add(label_30);
-		textField_14.setText("22");
-		textField_14.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		textField_14.setColumns(10);
-		textField_14.setBounds(1088, 464, 48, 50);
-		
-		panel_2.add(textField_14);
+
+		checkBox.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		checkBox.setBounds(229, 468, 269, 46);
+		panel_2.add(checkBox);
 		chckbxmntmNewCheckItem.addItemListener(new ItemListener() {
 			//所有楼栋
 			@Override
@@ -731,6 +796,34 @@ public class StudentGUI extends BaseGUI {
 				else if(chckbxmntmNewCheckItem_15.getState()) {
 					money=200;
 				}else if(chckbxmntmNewCheckItem_1.getState())
+				{
+					money=0;
+				}
+				//选择所有三栋
+				GetNeed(std, 0, money,df);
+			}
+		});
+		checkBoxMenuItem_20.addItemListener(new ItemListener() {
+			//所有楼栋
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO 自动生成的方法存根
+				checkBoxMenuItem_16.setState(false);
+				checkBoxMenuItem_17.setState(false);
+				checkBoxMenuItem_18.setState(false);
+				checkBoxMenuItem_19.setState(false);
+				checkBoxMenuItem_15.setState(false);
+				int money=0;
+				if(checkBoxMenuItem_21.getState())
+				{
+					money=300;
+				}else if(checkBoxMenuItem_22.getState())
+				{
+					money=500;
+				}
+				else if(chckbxmntmNewCheckItem_21.getState()) {
+					money=200;
+				}else if(checkBoxMenuItem_23.getState())
 				{
 					money=0;
 				}
@@ -766,6 +859,34 @@ public class StudentGUI extends BaseGUI {
 				GetNeed(std, 3, money,df);
 			}
 		});
+		checkBoxMenuItem_17.addItemListener(new ItemListener() {
+			//所有楼栋
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO 自动生成的方法存根
+				checkBoxMenuItem_16.setState(false);
+				checkBoxMenuItem_20.setState(false);
+				checkBoxMenuItem_18.setState(false);
+				checkBoxMenuItem_19.setState(false);
+				checkBoxMenuItem_15.setState(false);
+				int money=0;
+				if(checkBoxMenuItem_21.getState())
+				{
+					money=300;
+				}else if(checkBoxMenuItem_22.getState())
+				{
+					money=500;
+				}
+				else if(chckbxmntmNewCheckItem_21.getState()) {
+					money=200;
+				}else if(checkBoxMenuItem_23.getState())
+				{
+					money=0;
+				}
+				//选择所有三栋
+				GetNeed(std, 3, money,df);
+			}
+		});
 		chckbxmntmNewCheckItem_12.addItemListener(new ItemListener() {
 			//1
 			@Override
@@ -787,6 +908,34 @@ public class StudentGUI extends BaseGUI {
 				else if(chckbxmntmNewCheckItem_15.getState()) {
 					money=200;
 				}else if(chckbxmntmNewCheckItem_1.getState())
+				{
+					money=0;
+				}
+				//选择所有三栋
+				GetNeed(std, 1, money,df);
+			}
+		});
+		checkBoxMenuItem_15.addItemListener(new ItemListener() {
+			//1
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO 自动生成的方法存根
+				checkBoxMenuItem_16.setState(false);
+				checkBoxMenuItem_17.setState(false);
+				checkBoxMenuItem_18.setState(false);
+				checkBoxMenuItem_19.setState(false);
+				checkBoxMenuItem_20.setState(false);
+				int money=0;
+				if(checkBoxMenuItem_21.getState())
+				{
+					money=300;
+				}else if(checkBoxMenuItem_22.getState())
+				{
+					money=500;
+				}
+				else if(chckbxmntmNewCheckItem_21.getState()) {
+					money=200;
+				}else if(checkBoxMenuItem_23.getState())
 				{
 					money=0;
 				}
@@ -822,6 +971,34 @@ public class StudentGUI extends BaseGUI {
 				GetNeed(std, 2, money,df);
 			}
 		});
+		checkBoxMenuItem_16.addItemListener(new ItemListener() {
+			//2
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO 自动生成的方法存根
+				checkBoxMenuItem_15.setState(false);
+				checkBoxMenuItem_17.setState(false);
+				checkBoxMenuItem_18.setState(false);
+				checkBoxMenuItem_19.setState(false);
+				checkBoxMenuItem_20.setState(false);
+				int money=0;
+				if(checkBoxMenuItem_21.getState())
+				{
+					money=300;
+				}else if(checkBoxMenuItem_22.getState())
+				{
+					money=500;
+				}
+				else if(chckbxmntmNewCheckItem_21.getState()) {
+					money=200;
+				}else if(checkBoxMenuItem_23.getState())
+				{
+					money=0;
+				}
+				//选择所有三栋
+				GetNeed(std, 2, money,df);
+			}
+		});
 	checkBoxMenuItem_1.addItemListener(new ItemListener() {
 			//4
 			@Override
@@ -850,6 +1027,34 @@ public class StudentGUI extends BaseGUI {
 				GetNeed(std, 4, money,df);
 			}
 		});
+	checkBoxMenuItem_18.addItemListener(new ItemListener() {
+		//4
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_15.setState(false);
+			checkBoxMenuItem_17.setState(false);
+			checkBoxMenuItem_16.setState(false);
+			checkBoxMenuItem_19.setState(false);
+			checkBoxMenuItem_20.setState(false);
+			int money=0;
+			if(checkBoxMenuItem_21.getState())
+			{
+				money=300;
+			}else if(checkBoxMenuItem_22.getState())
+			{
+				money=500;
+			}
+			else if(chckbxmntmNewCheckItem_21.getState()) {
+				money=200;
+			}else if(checkBoxMenuItem_23.getState())
+			{
+				money=0;
+			}
+			//选择所有三栋
+			GetNeed(std, 4, money,df);
+		}
+	});
 	chckbxmntmNewCheckItem_14.addItemListener(new ItemListener() {
 		//5
 		@Override
@@ -876,6 +1081,34 @@ public class StudentGUI extends BaseGUI {
 			}
 			//选择所有三栋
 			GetNeed(std,5, money,df);
+		}
+	});
+	checkBoxMenuItem_19.addItemListener(new ItemListener() {
+		//5
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_15.setState(false);
+			checkBoxMenuItem_17.setState(false);
+			checkBoxMenuItem_16.setState(false);
+			checkBoxMenuItem_18.setState(false);
+			checkBoxMenuItem_20.setState(false);
+			int money=0;
+			if(checkBoxMenuItem_21.getState())
+			{
+				money=300;
+			}else if(checkBoxMenuItem_22.getState())
+			{
+				money=500;
+			}
+			else if(chckbxmntmNewCheckItem_21.getState()) {
+				money=200;
+			}else if(checkBoxMenuItem_23.getState())
+			{
+				money=0;
+			}
+			//选择所有三栋
+			GetNeed(std, 5, money,df);
 		}
 	});
 	checkBoxMenuItem_2.addItemListener(new ItemListener() {
@@ -909,6 +1142,37 @@ public class StudentGUI extends BaseGUI {
 				GetNeed(std,floor, 300,df);
 			}
 		});
+	checkBoxMenuItem_21.addItemListener(new ItemListener() {
+		//300
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_22.setState(false);
+			checkBoxMenuItem_23.setState(false);
+			chckbxmntmNewCheckItem_21.setState(false);
+			int floor=0;
+			if(checkBoxMenuItem_17.getState())
+			{
+				floor=3;
+			}else if(checkBoxMenuItem_15.getState())
+			{
+				floor=1;
+			}
+			else if(checkBoxMenuItem_16.getState()) {
+				floor=2;
+			}
+			else if(checkBoxMenuItem_18.getState()) {
+				floor=4;
+			}
+			else if(checkBoxMenuItem_19.getState()) {
+				floor=5;
+			}else if(checkBoxMenuItem_20.getState()) {
+				floor=0;
+			}
+			//选择所有三栋
+			GetNeed(std,floor, 300,df);
+		}
+	});
 	checkBoxMenuItem_3.addItemListener(new ItemListener() {
 		//500
 		@Override
@@ -934,6 +1198,37 @@ public class StudentGUI extends BaseGUI {
 			else if(chckbxmntmNewCheckItem_14.getState()) {
 				floor=5;
 			}else if(chckbxmntmNewCheckItem.getState()) {
+				floor=0;
+			}
+			//选择所有三栋
+			GetNeed(std,floor, 500,df);
+		}
+	});
+	checkBoxMenuItem_22.addItemListener(new ItemListener() {
+		//500
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_21.setState(false);
+			checkBoxMenuItem_23.setState(false);
+			chckbxmntmNewCheckItem_21.setState(false);
+			int floor=0;
+			if(checkBoxMenuItem_17.getState())
+			{
+				floor=3;
+			}else if(checkBoxMenuItem_15.getState())
+			{
+				floor=1;
+			}
+			else if(checkBoxMenuItem_16.getState()) {
+				floor=2;
+			}
+			else if(checkBoxMenuItem_18.getState()) {
+				floor=4;
+			}
+			else if(checkBoxMenuItem_19.getState()) {
+				floor=5;
+			}else if(checkBoxMenuItem_20.getState()) {
 				floor=0;
 			}
 			//选择所有三栋
@@ -971,6 +1266,37 @@ public class StudentGUI extends BaseGUI {
 			GetNeed(std,floor, 200,df);
 		}
 	});
+	chckbxmntmNewCheckItem_21.addItemListener(new ItemListener() {
+		//200
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_21.setState(false);
+			checkBoxMenuItem_23.setState(false);
+			checkBoxMenuItem_22.setState(false);
+			int floor=0;
+			if(checkBoxMenuItem_17.getState())
+			{
+				floor=3;
+			}else if(checkBoxMenuItem_15.getState())
+			{
+				floor=1;
+			}
+			else if(checkBoxMenuItem_16.getState()) {
+				floor=2;
+			}
+			else if(checkBoxMenuItem_18.getState()) {
+				floor=4;
+			}
+			else if(checkBoxMenuItem_19.getState()) {
+				floor=5;
+			}else if(checkBoxMenuItem_20.getState()) {
+				floor=0;
+			}
+			//选择所有三栋
+			GetNeed(std,floor, 200,df);
+		}
+	});
 	chckbxmntmNewCheckItem_1.addItemListener(new ItemListener() {
 		
 		@Override
@@ -1002,13 +1328,46 @@ public class StudentGUI extends BaseGUI {
 			GetNeed(std,floor, 0,df);
 		}
 	});
-		
+	checkBoxMenuItem_23.addItemListener(new ItemListener() {
+		//300
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO 自动生成的方法存根
+			checkBoxMenuItem_21.setState(false);
+			chckbxmntmNewCheckItem_21.setState(false);
+			checkBoxMenuItem_22.setState(false);
+			int floor=0;
+			if(checkBoxMenuItem_17.getState())
+			{
+				floor=3;
+			}else if(checkBoxMenuItem_15.getState())
+			{
+				floor=1;
+			}
+			else if(checkBoxMenuItem_16.getState()) {
+				floor=2;
+			}
+			else if(checkBoxMenuItem_18.getState()) {
+				floor=4;
+			}
+			else if(checkBoxMenuItem_19.getState()) {
+				floor=5;
+			}else if(checkBoxMenuItem_20.getState()) {
+				floor=0;
+			}
+			//选择所有三栋
+			GetNeed(std,floor,0,df);
+		}
+	});
 		if(std.getSroom()!=null)
 		{//不能选择入住申请
 	        tabbedPane.setSelectedIndex(1); 
 	        tabbedPane.setEnabledAt(0, false);
 		}
-
+		else {
+			 tabbedPane.setEnabledAt(1, false);
+			 tabbedPane.setEnabledAt(2, false);
+		}
 	}
 	//获得所有空房间并选择需要的
 	public void GetNeed(Student std,int floor,int money,DefaultTableModel df)
