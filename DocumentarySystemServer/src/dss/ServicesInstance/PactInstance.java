@@ -21,7 +21,7 @@ public class PactInstance extends BaseServe implements PactApplications {
 		if(pactDAO.insert(currentPact)) 
 			return true;
 		else
-		return false;
+			return false;
 	}
 
 	@Override
@@ -53,7 +53,8 @@ public class PactInstance extends BaseServe implements PactApplications {
 		Enumeration<Pact> e = pactDAO.getAll();
 		while (e.hasMoreElements()) {
 			Pact pact = (Pact) e.nextElement();
-			if(pact.getPSNo().equals(currentStudent.getNubmer())) {
+			//更新：当前pmoney不为0的才是有效合同
+			if(pact.getPSNo().equals(currentStudent.getNubmer())&&pact.getPMoney()!=0) {
 				result = pact;
 			}
 		}

@@ -22,31 +22,23 @@ import dss.Object.Application;
 import dss.Object.Pact;
 import dss.Object.Room;
 import dss.Object.Student;
-import javafx.scene.control.DatePicker;
-
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JSlider;
-import javax.swing.JScrollBar;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
 
 public class StudentGUI extends BaseGUI {
 	
@@ -100,26 +92,19 @@ public class StudentGUI extends BaseGUI {
 	JCheckBoxMenuItem checkBoxMenuItem_23 = new JCheckBoxMenuItem("所有月租");//更换界面所有月租
 	private JTextField textField_6;
 	private JTextField passwordField;
-	private JTable table;
-	JScrollPane scrollPane;
-	JScrollPane scrollPane_1;
 	String[] month= {"3","9"};
 	JComboBox comboBox = new JComboBox(month);
 	JComboBox comboBox_1 = new JComboBox(month);
 	JComboBox comboBox_2 = new JComboBox(month);
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	String[] columnNames = { "房间号", "房间类型","月租金","系","楼栋","状态"}; // 定义表格列名数组
 	private final JCheckBoxMenuItem chckbxmntmNewCheckItem = new JCheckBoxMenuItem("\u6240\u6709\u697C\u680B");
 	private final JCheckBoxMenuItem chckbxmntmNewCheckItem_1 = new JCheckBoxMenuItem("\u6240\u6709\u6708\u79DF");
 	private final JTextField textField = new JTextField();
 	private final JTextField textField_1 = new JTextField();
 	private final JLabel lblNewLabel = new JLabel("\u8BF7\u614E\u91CD\u8003\u8651\u540E\u8F93\u5165\u5BC6\u7801\u8FDB\u884C\u9000\u79DF\uFF01");
+	private JTable table;
+	private JTable table_1;
+	private JScrollPane scrollPane_1;
 	
 	public StudentGUI(dss.Object.Student std) {
 		textField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -158,13 +143,18 @@ public class StudentGUI extends BaseGUI {
 		}
 		DefaultTableModel df=new DefaultTableModel();
 		df.setDataVector(room, columnNames);
-		table=new JTable(df);
-		JTableHeader tab_header = table.getTableHeader();					//获取表头			
+		table = new JTable(df);
+		table.setRowHeight(50);
+		table.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		JTableHeader tab_header=table.getTableHeader();
 		tab_header.setFont(new Font("微软雅黑", Font.PLAIN, 30));	
-		tab_header.setPreferredSize(new Dimension(tab_header.getWidth(), 50));	//修改表头的高度
-		table.setFont(new Font("微软雅黑", Font.PLAIN, 30));
-			
-
+		tab_header.setPreferredSize(new Dimension(tab_header.getWidth(), 50));
+		table_1 = new JTable(df);
+		table_1.setRowHeight(50);
+		table_1.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		JTableHeader tab_header1=table_1.getTableHeader();
+		tab_header1.setFont(new Font("微软雅黑", Font.PLAIN, 30));	
+		tab_header1.setPreferredSize(new Dimension(tab_header1.getWidth(), 50));
 		
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -223,23 +213,13 @@ public class StudentGUI extends BaseGUI {
 		if(NoRoom==null)
 		{
 			label_8.setText("未入住");
-		}
-		else {
-			label_8.setText(NoRoom);
-		}
-		label_8.setForeground(Color.WHITE);
-		label_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		label_8.setBounds(761, 13, 167, 30);
-		bgp.add(label_8);
-		
-
-		Pact pact=pactInstance.checkStuPact(std);
-		if(pact==null)
-		{
 			label_9.setText("");
 		}
 		else {
+			label_8.setText(NoRoom);
+			Pact pact=pactInstance.checkStuPact(std);
 			String stime=pact.getPSTime();//合同开始时间2020-09-01
+			
 			String[] con=stime.split("-");//分割出月份
 			int Year=Integer.parseInt(con[0]);//年
 			int Month=Integer.parseInt(con[1]);//月份
@@ -251,6 +231,12 @@ public class StudentGUI extends BaseGUI {
 			int newMonth=m;//终止月
 			label_9.setText(newYear+"-"+newMonth+"-"+"01");
 		}
+		label_8.setForeground(Color.WHITE);
+		label_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_8.setBounds(761, 13, 167, 30);
+		bgp.add(label_8);
+		
+
 		label_9.setForeground(Color.WHITE);
 		label_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		label_9.setBounds(761, 56, 272, 30);
@@ -271,7 +257,7 @@ public class StudentGUI extends BaseGUI {
 
 		menuBar.setOpaque(false);
 		menuBar.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
-		menuBar.setBounds(900, 0, 650, 49);
+		menuBar.setBounds(900, 0, 650, 43);
 		panel.add(menuBar);
 		
 
@@ -353,7 +339,7 @@ public class StudentGUI extends BaseGUI {
 						int bigY=Integer.parseInt(textField_1.getText());
 						int smallM=Integer.parseInt((String)comboBox.getSelectedItem());
 						int bigM=Integer.parseInt((String)comboBox_1.getSelectedItem());
-						if((bigY*12+bigM-(smallY*12+smallM))>=6&&(bigY*12+bigM-(smallY*12+smallM))<=12&&(smallY*12+smallM>=cuD))
+						if((bigY*12+bigM-(smallY*12+smallM))>=6&&(bigY*12+bigM-(smallY*12+smallM))<=12)
 						{//可以提交
 							DisPose();
 							java.util.List<Application> ALLapp=appInstance.getAllApplications();
@@ -424,12 +410,9 @@ public class StudentGUI extends BaseGUI {
 		label_22.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		label_22.setBounds(349, 534, 40, 50);
 		panel.add(label_22);
-		table.setPreferredScrollableViewportSize(new Dimension(500,600));
 		
-		table.setRowHeight(50);
-		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(0, 48, 1197, 418);
-		panel.add(scrollPane);
+		
+
 		comboBox.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		
 
@@ -453,7 +436,12 @@ public class StudentGUI extends BaseGUI {
 		label_21.setBounds(434, 534, 94, 50);
 		panel.add(label_21);
 		
-		//scrollPane.setViewportView(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 41, 1197, 418);
+		panel.add(scrollPane);
+
+		scrollPane.setViewportView(table);
+		
 		panel_1.setBackground(Color.CYAN);
 		
 		panel_1.setLayout(null);
@@ -502,18 +490,18 @@ public class StudentGUI extends BaseGUI {
 					}
 					if(oldtype==1)
 					{
-						SP=newTime-pactInstance.checkStuPact(std).getPTime()*500;
+						SP=(newTime-pactInstance.checkStuPact(std).getPTime())*500;
 					}
 					if(oldtype==2)
 					{
-						SP=newTime-pactInstance.checkStuPact(std).getPTime()*300;
+						SP=(newTime-pactInstance.checkStuPact(std).getPTime())*300;
 					}
 					if(oldtype==3)
 					{
-						SP=newTime-pactInstance.checkStuPact(std).getPTime()*200;
+						SP=(newTime-pactInstance.checkStuPact(std).getPTime())*200;
 					}
 					dispose();
-					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), newTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
+					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 2, df.format(day), pactInstance.checkStuPact(std).getPSTime(), newTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
 					appGUI.setVisible(true);
 				}
 				else
@@ -604,16 +592,16 @@ public class StudentGUI extends BaseGUI {
 						}
 					}
 					dispose();
-					if(table.getSelectedRow()==-1)
+					if(table_1.getSelectedRow()==-1)
 					{//没有选择房间只更换时间
 					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 3, df.format(day), pactInstance.checkStuPact(std).getPSTime(), NTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
 					appGUI.setVisible(true);
 					}
 					else {
 						//更换房间和时间
-						int row=table.getSelectedRow();
-						String NType=(String)table.getValueAt(row, 1);
-						String NRoomNum=(String)table.getValueAt(row, 0);
+						int row=table_1.getSelectedRow();
+						String NType=(String)table_1.getValueAt(row, 1);
+						String NRoomNum=(String)table_1.getValueAt(row, 0);
 						int type=Integer.parseInt(NType.substring(1));
 						float newmoney=0;
 						if(type==1)
@@ -637,7 +625,7 @@ public class StudentGUI extends BaseGUI {
 				
 			}
 			else {//不更改时间
-				if(table.getSelectedRow()==-1)
+				if(table_1.getSelectedRow()==-1)
 				{
 					JOptionPane.showMessageDialog(null,   "请选择房间！","未选择房间",JOptionPane.ERROR_MESSAGE);
 				}
@@ -658,9 +646,9 @@ public class StudentGUI extends BaseGUI {
 						APPnum+="0";
 					}
 					APPnum+=num1;
-					int row=table.getSelectedRow();
-					String NType=(String)table.getValueAt(row, 1);
-					String NRoomNum=(String)table.getValueAt(row, 0);
+					int row=table_1.getSelectedRow();
+					String NType=(String)table_1.getValueAt(row, 1);
+					String NRoomNum=(String)table_1.getValueAt(row, 0);
 					int type=Integer.parseInt(NType.substring(1));
 					int newmoney=0;
 					if(type==1)
@@ -762,11 +750,6 @@ public class StudentGUI extends BaseGUI {
 		label_26.setBounds(700, 464, 94, 50);
 		panel_2.add(label_26);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(table);
-		scrollPane_1.setBounds(0, 41, 1197, 418);
-		panel_2.add(scrollPane_1);
-		
-
 		comboBox_2.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		comboBox_2.setBounds(653, 464, 46, 50);
 		panel_2.add(comboBox_2);
@@ -775,6 +758,12 @@ public class StudentGUI extends BaseGUI {
 		checkBox.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		checkBox.setBounds(229, 468, 269, 46);
 		panel_2.add(checkBox);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 41, 1197, 418);
+		panel_2.add(scrollPane_1);
+
+		scrollPane_1.setViewportView(table_1);
+		
 		chckbxmntmNewCheckItem.addItemListener(new ItemListener() {
 			//所有楼栋
 			@Override

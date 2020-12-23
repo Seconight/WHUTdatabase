@@ -294,7 +294,8 @@ public class ApplicationGUI extends JFrame  {
 				java.util.List<Pact> ALLpact=pactInstance.getAllPacts();
 				for(int i=0;i<ALLpact.size();i++)
 				{
-					if(ALLpact.get(i).getPNo().equals(hetong))
+					//注意：逻辑上只有当前money不为0的合同才是有效合同，且只有一个
+					if(ALLpact.get(i).getPNo().equals(hetong)&&ALLpact.get(i).getPMoney()!=0)
 					{
 						Pact pact=ALLpact.get(i);
 						pact.setPMoney(0);

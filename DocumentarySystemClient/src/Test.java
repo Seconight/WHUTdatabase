@@ -4,7 +4,7 @@ import java.util.List;
 import dsc.GUI.Login;
 import dsc.ServicesInstance.*;
 import dss.Object.*;
-//测试类，用于测试客户端与服务端的连接
+//测试类，用于测试客户端与服务端的连接2018000100001
 public class Test {
 	
 	public static void main(String[] args) {
