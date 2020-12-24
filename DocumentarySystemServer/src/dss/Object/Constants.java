@@ -22,15 +22,21 @@ public class Constants {
 	public static Connection databaseConnection;
 	
 	//一型宿舍介绍
-	public static String R1INTRO = "好宿舍";
+	public static String R1INTRO = "一等宿舍";
 	
 	//二型宿舍介绍
-	public static String R2INTRO = "中等宿舍";
+	public static String R2INTRO = "二等宿舍";
 	
 	//三型宿舍介绍
-	public static String R3INTRO = "坏宿舍";
+	public static String R3INTRO = "三等宿舍";
 	
 	//客户端请求服务名称
 	public static String ADDRESS = "localhost";
+	
+	//管理员账号
+	public static String admID = "admin";
+	
+	//管理员密码
+	public static String admPW = "123";
 	
 }

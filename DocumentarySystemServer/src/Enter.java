@@ -27,6 +27,10 @@ public class Enter {
 		process.beginning();
 		
 		
+//		Room add = new Room();
+//		add.setNumber("0018017");
+//		roomInstance.deleteRoom(add);
+		
 		//≤‚ ‘
 //		application≤‚ ‘
 //		if(appInstance.searchApplication("2018000002") == null) System.out.println("err");

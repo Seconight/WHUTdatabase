@@ -114,7 +114,6 @@ public class RoomDAO extends BaseDAO{
 				return false;
 			else {
 				connect();
-				
 				preparedStatement = databaseConnection.prepareStatement(
 						"delete from dbo.Room where RNo=?;"
 						,PreparedStatement.NO_GENERATED_KEYS);

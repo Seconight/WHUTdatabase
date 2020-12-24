@@ -71,19 +71,32 @@ public class Login extends BaseGUI {
 				String No=text_account.getText();
 				//获得密码
 				String pwd=text_password.getText();
-				//登陆验证
-				dss.Object.Student student = studentInstance.studentLogin(No, pwd);
-				if(student == null) {
-					JOptionPane.showMessageDialog(null,  "请重新输入账号和密码", "账号密码不匹配",JOptionPane.ERROR_MESSAGE);
-					text_account.setText("");
-					text_password.setText("");
+				//管理员登陆
+				if(No.equals(dss.Object.Constants.admID)) {
+					if(pwd.equals(dss.Object.Constants.admPW)) {
+						Manager mng = new Manager();
+						mng.setVisible(true);
+						DisPose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "管理员密码错误！");
+					}
 				}
 				else {
+					//学生登陆验证
+					dss.Object.Student student = studentInstance.studentLogin(No, pwd);
+					if(student == null) {
+						JOptionPane.showMessageDialog(null,  "请重新输入账号和密码", "账号密码不匹配",JOptionPane.ERROR_MESSAGE);
+						text_account.setText("");
+						text_password.setText("");
+					}
+					else {
 				
-					currentStudent = student;
-					StudentGUI std=new StudentGUI(currentStudent);
-					std.setVisible(true);
-					DisPose();
+						currentStudent = student;
+						StudentGUI std=new StudentGUI(currentStudent);
+						std.setVisible(true);
+						DisPose();
+					}
 				}
 			}
 		});
