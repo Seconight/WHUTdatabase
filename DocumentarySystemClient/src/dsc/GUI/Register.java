@@ -34,7 +34,7 @@ public class Register extends BaseGUI {
 	JLabel lblNewLabel_5 = new JLabel("\u5BC6\u7801");//密码
 	JLabel lblNewLabel_6 = new JLabel("\u786E\u8BA4\u5BC6\u7801");//确认密码
 	JButton button = new JButton("\u6CE8\u518C");//注册按钮
-	String[] dept= {"经济","管理","能动","航海","机设","外国语","马克思主义","计算机科学与技术","化生","物流"};
+	String[] dept= {"经济","管理","能动","航海","机设","外国语","马克思","计算机科学与技术","化生","物流"};
 	JComboBox comboBox = new JComboBox(dept);//系
 	String []sex= {"男","女"};
 	JComboBox comboBox_1 = new JComboBox(sex);//性别

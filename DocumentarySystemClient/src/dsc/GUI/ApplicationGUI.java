@@ -30,6 +30,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import java.awt.SystemColor;
 
 public class ApplicationGUI extends JFrame  {
 	private static final long serialVersionUID = 1L;
@@ -63,6 +64,7 @@ public class ApplicationGUI extends JFrame  {
 	private final JLabel label_18 = new JLabel("");
 	private final JLabel label_19 = new JLabel("");
 	private final JLabel label_20 = new JLabel("");
+	JLabel label_27 = new JLabel("");
 	private final JLabel label_21 = new JLabel("");
 	private final JLabel label_22 = new JLabel("\u57FA\u672C\u4FE1\u606F\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014");
 	private final JLabel label_23 = new JLabel("\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u57FA\u672C\u4FE1\u606F");
@@ -82,6 +84,8 @@ public class ApplicationGUI extends JFrame  {
 	 * Create the frame.
 	 */
 	public ApplicationGUI(dss.Object.Student std,String APPnum,int APPtype,String applyTime,String Stime,int Month,String stdNum,String hetong,String oldR,int oldType,String newR,int newType,int SP,int AP) {
+		label_27.setText(std.getName());
+		
 		setDragable();
 		setUndecorated(true);
 		setBounds((screensize.width - 618) / 2, (screensize.height - 1000) / 2, 618, 1000);
@@ -102,7 +106,7 @@ public class ApplicationGUI extends JFrame  {
 		contentPane.setBorder(new EmptyBorder(0,0,0,0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		panel.setBackground(Color.CYAN);
+		panel.setBackground(SystemColor.activeCaption);
 		//contentPane.setBackground(COLOR);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -147,13 +151,13 @@ public class ApplicationGUI extends JFrame  {
 		label_7.setBounds(54, 222, 200, 40);
 		label_7.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_7);
-		label_8.setBounds(14, 320, 160, 40);
+		label_8.setBounds(14, 375, 160, 40);
 		label_8.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_8);
-		label_9.setBounds(14, 459, 160, 40);
+		label_9.setBounds(14, 484, 160, 40);
 		label_9.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_9);
-		label_10.setBounds(134, 258, 120, 40);
+		label_10.setBounds(134, 308, 120, 40);
 		label_10.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_10);
 		label_11.setText(APPnum);
@@ -189,15 +193,15 @@ public class ApplicationGUI extends JFrame  {
 		label_18.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_18);
 		label_19.setText(oldR);
-		label_19.setBounds(174, 320, 240, 40);
+		label_19.setBounds(174, 375, 240, 40);
 		label_19.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_19);
 		label_20.setText(newR);
-		label_20.setBounds(174, 459, 240, 40);
+		label_20.setBounds(174, 484, 240, 40);
 		label_20.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_20);
 		label_21.setText(hetong);
-		label_21.setBounds(268, 258, 245, 40);
+		label_21.setBounds(269, 308, 245, 40);
 		label_21.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
 		panel.add(label_21);
 		
@@ -207,10 +211,11 @@ public class ApplicationGUI extends JFrame  {
 				label_17.setText(Integer.toString(SP)+"元");
 				if(SP<0)
 				{
-					JOptionPane.showMessageDialog(null, "返还金额："+(-SP)+"元", "", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "<html><font size=16>返还金额："+(-SP)+"元");
+					
 				}
 				else if(SP>0){
-					JOptionPane.showMessageDialog(null, "支付金额："+SP+"元", "", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "<html><font size=16>支付金额："+SP+"元");
 				}
 			}
 		});
@@ -223,7 +228,7 @@ public class ApplicationGUI extends JFrame  {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!label_17.getText().equals(label_16.getText())) {
-					JOptionPane.showMessageDialog(null, "请点击按钮进行金额处理!", "未处理金额信息", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "<html><font size=16>请点击按钮进行金额处理!", "<html><font size=16>未处理金额信息", JOptionPane.ERROR_MESSAGE);
 				}
 			else {
 				if(APPtype==1)
@@ -249,6 +254,7 @@ public class ApplicationGUI extends JFrame  {
 					Pact currrentPact=new Pact(APPnum, Stime, SP, Month, newR, stdNum);
 					pactInstance.addNewPact(currrentPact);
 					//std.(newR);
+					label_21.setText(currrentPact.getPNo());
 					java.util.List<Student> ALLstu=studentInstance.getStudentsInfo();
 					for(int i=0;i<ALLstu.size();i++)
 					{
@@ -273,7 +279,7 @@ public class ApplicationGUI extends JFrame  {
 							break;
 						}
 					}
-					JOptionPane.showMessageDialog(null,   "入住成功！","",JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null,   "<html><font size=16>入住成功！");
 				}
 			if(APPtype==2)
 			{//退租
@@ -316,6 +322,7 @@ public class ApplicationGUI extends JFrame  {
 						break;
 					}
 				}
+				JOptionPane.showMessageDialog(null,   "<html><font size=16>退宿成功！");
 			}
 			if(APPtype==3)
 			{//更换
@@ -368,6 +375,7 @@ public class ApplicationGUI extends JFrame  {
 						break;
 					}
 				}
+				JOptionPane.showMessageDialog(null,   "<html><font size=16>更换成功！");
 			}
 				dispose();
 				StudentGUI stuGui=new StudentGUI(std);
@@ -411,7 +419,7 @@ public class ApplicationGUI extends JFrame  {
 		{
 			textArea.setText(Constants.R3INTRO);
 		}
-		textArea.setBounds(14, 358, 590, 98);
+		textArea.setBounds(14, 418, 590, 68);
 		panel.add(textArea);
 		
 		JTextArea textArea_1 = new JTextArea();
@@ -430,8 +438,18 @@ public class ApplicationGUI extends JFrame  {
 		{
 			textArea_1.setText(Constants.R3INTRO);
 		}
-		textArea_1.setBounds(14, 497, 590, 98);
+		textArea_1.setBounds(14, 527, 590, 68);
 		panel.add(textArea_1);
+		
+		JLabel label_26 = new JLabel("\u7533\u8BF7\u4EBA\u59D3\u540D");
+		label_26.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_26.setBounds(54, 265, 200, 40);
+		panel.add(label_26);
+		
+		
+		label_27.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		label_27.setBounds(268, 265, 246, 40);
+		panel.add(label_27);
 		
 	
 	}

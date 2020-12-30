@@ -105,6 +105,7 @@ public class StudentGUI extends BaseGUI {
 	private JTable table;
 	private JTable table_1;
 	private JScrollPane scrollPane_1;
+	private final JLabel label_16 = new JLabel("\u623F\u95F4\u7C7B\u578B\u7B2C\u4E00\u4F4D\u8868\u793A\u7537(1)\u5973(0),\u7B2C\u4E8C\u4F4D\u8868\u793A\u623F\u95F4\u7B49\u7EA7");
 	
 	public StudentGUI(dss.Object.Student std) {
 		textField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
@@ -326,7 +327,7 @@ public class StudentGUI extends BaseGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				if(table.getSelectedRow()==-1)
 				{
-					JOptionPane.showMessageDialog(null,   "请选择房间！","未选择房间",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,   "<html><font size=16>请选择房间！","<html><font size=16>未选择房间",JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					Calendar now = Calendar.getInstance();
@@ -377,11 +378,12 @@ public class StudentGUI extends BaseGUI {
 							{
 								SP=(bigY*12+bigM-(smallY*12+smallM))*200;
 							}
-							ApplicationGUI app=new ApplicationGUI(std,APPnum,1,df.format(day),stime,bigY*12+bigM-(smallY*12+smallM),std.getNubmer(),null,null,0,NRoomNum,type,SP,0);
+				
+							ApplicationGUI app=new ApplicationGUI(std,APPnum,1,df.format(day),stime,bigY*12+bigM-(smallY*12+smallM),std.getNubmer(),APPnum,null,0,NRoomNum,type,SP,0);
 							app.setVisible(true);
 						}
 						else {
-							JOptionPane.showMessageDialog(null,  "请重新选择时间！", "输入信息错误",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,  "<html><font size=16>请重新选择时间！", "<html><font size=16>输入信息错误",JOptionPane.ERROR_MESSAGE);
 							textField.setText("");
 							textField_1.setText("");
 						}
@@ -442,6 +444,12 @@ public class StudentGUI extends BaseGUI {
 
 		scrollPane.setViewportView(table);
 		
+		JLabel lblNewLabel_1 = new JLabel("\u623F\u95F4\u7C7B\u578B\u7B2C\u4E00\u4F4D\u8868\u793A\u7537(1)\u5973(0),\u7B2C\u4E8C\u4F4D\u8868\u793A\u623F\u95F4\u7B49\u7EA7");
+		lblNewLabel_1.setForeground(Color.RED);
+		lblNewLabel_1.setFont(new Font("华文楷体", Font.PLAIN, 30));
+		lblNewLabel_1.setBounds(189, 0, 681, 43);
+		panel.add(lblNewLabel_1);
+		
 		panel_1.setBackground(Color.CYAN);
 		
 		panel_1.setLayout(null);
@@ -488,6 +496,21 @@ public class StudentGUI extends BaseGUI {
 							break;
 						}
 					}
+					if(cuY*12+cuM < oldY*12+oldM) {
+						if(oldtype==1)
+						{
+							SP=-pactInstance.checkStuPact(std).getPTime()*500;
+						}
+						if(oldtype==2)
+						{
+							SP=-pactInstance.checkStuPact(std).getPTime()*300;
+						}
+						if(oldtype==3)
+						{
+							SP=-pactInstance.checkStuPact(std).getPTime()*200;
+						}
+					}
+					else {
 					if(oldtype==1)
 					{
 						SP=(newTime-pactInstance.checkStuPact(std).getPTime())*500;
@@ -500,13 +523,14 @@ public class StudentGUI extends BaseGUI {
 					{
 						SP=(newTime-pactInstance.checkStuPact(std).getPTime())*200;
 					}
+					}
 					dispose();
-					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 2, df.format(day), pactInstance.checkStuPact(std).getPSTime(), newTime, std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
+					ApplicationGUI appGUI=new ApplicationGUI(std, APPnum, 2, df.format(day), pactInstance.checkStuPact(std).getPSTime(), pactInstance.checkStuPact(std).getPTime(), std.getNubmer(), pactInstance.checkStuPact(std).getPNo(), std.getSroom(),oldtype, null, 0, SP, 0);
 					appGUI.setVisible(true);
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null,  "请重新输入密码！", "输入密码错误",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,  "<html><font size=16>请重新输入密码！", "<html><font size=16>输入密码错误",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -521,8 +545,9 @@ public class StudentGUI extends BaseGUI {
 		panel_1.add(label_14);
 		
 		passwordField = new JPasswordField();
-		passwordField.setColumns(10);
-		passwordField.setFont(new Font("华光隶书_CNKI", Font.PLAIN, 40));
+		//passwordField.setColumns(10);
+		
+		passwordField.setFont(new Font("微软雅黑", Font.PLAIN, 40));
 		passwordField.setBounds(535, 141, 300, 50);
 		panel_1.add(passwordField);
 		lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 40));
@@ -548,7 +573,7 @@ public class StudentGUI extends BaseGUI {
 				int NTime=NYear*12+NMonth-(OYear*12+OMonth);
 				if(textField_6.getText().equals("")||(!(NTime<=12&&NTime>=6))||NTime==OTime)
 				{
-					JOptionPane.showMessageDialog(null,   "请重新选择结束时间或者取消更换时间！","时间错误",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,   "<html><font size=16>请重新选择结束时间或者取消更换时间！","<html><font size=16>时间错误",JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					
@@ -627,7 +652,7 @@ public class StudentGUI extends BaseGUI {
 			else {//不更改时间
 				if(table_1.getSelectedRow()==-1)
 				{
-					JOptionPane.showMessageDialog(null,   "请选择房间！","未选择房间",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,   "<html><font size=16>请选择房间！","<html><font size=16>未选择房间",JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					//进行房间更换
@@ -763,6 +788,11 @@ public class StudentGUI extends BaseGUI {
 		panel_2.add(scrollPane_1);
 
 		scrollPane_1.setViewportView(table_1);
+		label_16.setForeground(Color.RED);
+		label_16.setFont(new Font("华文楷体", Font.PLAIN, 30));
+		label_16.setBounds(180, 0, 681, 43);
+		
+		panel_2.add(label_16);
 		
 		chckbxmntmNewCheckItem.addItemListener(new ItemListener() {
 			//所有楼栋
